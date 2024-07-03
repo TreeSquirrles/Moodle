@@ -48,7 +48,9 @@ extension View {
 }
 
 struct ContentView: View { // Homepage
+    @State private var showCards = false
     @State private var showCredits = false
+    @State private var showingActionSheet = false
     
     var body: some View {
         NavigationView {
@@ -63,7 +65,7 @@ struct ContentView: View { // Homepage
                 Spacer()
                 
                 Button("Cards") {
-                    // more code to come
+                    showCards = true
                 }
                     .button()
                 Button("Decks/Study") {
@@ -75,13 +77,79 @@ struct ContentView: View { // Homepage
                 }
                 .button()
                 
+                Button("Action Sheet") {
+                    showingActionSheet = true
+                }
+                .button()
+                
                 Spacer()
                 Spacer()
             }
             .padding().padding().padding().padding()
             .background(.quinary, ignoresSafeAreaEdges: .all)
+            .sheet(isPresented: $showCards) {
+                Cards()
+            }
             .sheet(isPresented: $showCredits) {
                 Credits()
+            }
+            .actionSheet(isPresented: $showingActionSheet) {
+                ActionSheet(title: Text("Change background"), message: Text("Select a new color"), buttons: [
+                    .default(Text("Red")) {  },
+                    .default(Text("Green")) {  },
+                    .default(Text("Blue")) {  },
+                    .cancel()
+                ])
+            }
+        }
+    }
+}
+
+struct Cards: View {
+    @State private var cardNames = ["Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name"]
+    
+    @State private var deckCardisIn = ["Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck"]
+    
+    @State private var cardTags = ["Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags"]
+    
+    @State private var cards = 10
+    
+    var body: some View {
+        NavigationStack{
+            HStack{
+                Button() {
+                    //
+                } label: {
+                    Image(systemName: "folder.circle")
+                }
+                
+                Exit()
+                
+                Menu() {
+                    Button("Table") {
+                        //
+                    }
+                    Button("List") {
+                        //
+                    }
+                    Button("Sides") {
+                        //
+                    }
+                } label: {
+                    Image(systemName: "gearshape.fill")
+                }
+            }
+            
+            List{
+                Section{
+                    ForEach(0..<cards) {number in
+                        HStack{
+                            Text(cardNames[number])
+                            Text(deckCardisIn[number])
+                            Text(cardTags[number])
+                        }
+                    }
+                }
             }
         }
     }
@@ -97,6 +165,10 @@ struct Credits: View {
                     .title()
                     .padding()
                 
+                
+                Image("MoodleCircle")
+                    .imageScale(.small)
+                
                 HStack{
                     VStack{
                         Text("About us")
@@ -110,8 +182,9 @@ struct Credits: View {
                         Text("Don't worry, we'll have many subtitles for all the other people around. It'll be really cool. :)")
                             .padding([.top], 0.4)
                     }
-                    // I need to do left text alignment but I can do that later
-                    // Divider
+                    VStack{
+                        Image("Divider")
+                    }
                     VStack{
                         Text("Our mission")
                             .font(.title)
