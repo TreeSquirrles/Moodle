@@ -88,7 +88,7 @@ struct ContentView: View { // Homepage
             .padding().padding().padding().padding()
             .background(.quinary, ignoresSafeAreaEdges: .all)
             .sheet(isPresented: $showCards) {
-                Cards()
+                CardView()
             }
             .sheet(isPresented: $showCredits) {
                 Credits()
@@ -105,14 +105,17 @@ struct ContentView: View { // Homepage
     }
 }
 
-struct Cards: View {
-    @State private var cardNames = ["Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name"]
+struct CardView: View {
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var cards: FetchedResults<Cards>
     
-    @State private var deckCardisIn = ["Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck"]
+    @State private var cardNames = ["Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name"]
     
-    @State private var cardTags = ["Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags"]
+    @State private var deckCardisIn = ["Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck"]
     
-    @State private var cards = 10
+    @State private var cardTags = ["Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags"]
+    
+    @State private var cardNumber = 10
     
     var body: some View {
         NavigationStack{
@@ -142,15 +145,32 @@ struct Cards: View {
             
             List{
                 Section{
-                    ForEach(0..<cards) {number in
+                    ForEach($cards, id: \.self) { card in
                         HStack{
-                            Text(cardNames[number])
-                            Text(deckCardisIn[number])
-                            Text(cardTags[number])
+                            Text(card.wrappedFront)
+                            Section{
+                                ForEach(card.deckArray, id: \.self) { deck in
+                                    Text(deck.wrappedDeckName)
+                                }
+                            }
+                            Section{
+                                ForEach(card.tagsArray, id: \.self) { tag in
+                                    Text(tag.wrappedTagName)
+                                }
+                            }
                         }
                     }
                 }
             }
+            
+//            Button("Add Example Card") {
+//                let card1 = Cards(context: moc)
+//                card1.dateAdded = .now
+//                card1.front = "helo"
+//                card1.back = "bai"
+//                card1.deck = Decks(context: moc)
+//                card1.deck?.deckName = "My Deck"
+//            }
         }
     }
 }
