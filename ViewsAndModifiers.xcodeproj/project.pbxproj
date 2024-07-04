@@ -11,6 +11,12 @@
 		0F37E5A62C19373900574075 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F37E5A52C19373900574075 /* ContentView.swift */; };
 		0F37E5A82C19373B00574075 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F37E5A72C19373B00574075 /* Assets.xcassets */; };
 		0F37E5AB2C19373B00574075 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F37E5AA2C19373B00574075 /* Preview Assets.xcassets */; };
+		E76C38F82C374032005E9AB8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76C38F72C374032005E9AB8 /* SettingsView.swift */; };
+		E76C38FA2C374165005E9AB8 /* CardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76C38F92C374165005E9AB8 /* CardsView.swift */; };
+		E76C38FC2C3744AA005E9AB8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76C38FB2C3744AA005E9AB8 /* HomeView.swift */; };
+		E76C38FE2C37481A005E9AB8 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76C38FD2C37481A005E9AB8 /* Card.swift */; };
+		E76C39002C375016005E9AB8 /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76C38FF2C375016005E9AB8 /* CardListView.swift */; };
+		E76C39022C37516B005E9AB8 /* CardEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76C39012C37516B005E9AB8 /* CardEditView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +25,12 @@
 		0F37E5A52C19373900574075 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0F37E5A72C19373B00574075 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F37E5AA2C19373B00574075 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E76C38F72C374032005E9AB8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E76C38F92C374165005E9AB8 /* CardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsView.swift; sourceTree = "<group>"; };
+		E76C38FB2C3744AA005E9AB8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		E76C38FD2C37481A005E9AB8 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		E76C38FF2C375016005E9AB8 /* CardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
+		E76C39012C37516B005E9AB8 /* CardEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEditView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +65,12 @@
 			children = (
 				0F37E5A32C19373900574075 /* ViewsAndModifiersApp.swift */,
 				0F37E5A52C19373900574075 /* ContentView.swift */,
+				E76C38FD2C37481A005E9AB8 /* Card.swift */,
+				E76C38F92C374165005E9AB8 /* CardsView.swift */,
+				E76C38FF2C375016005E9AB8 /* CardListView.swift */,
+				E76C39012C37516B005E9AB8 /* CardEditView.swift */,
+				E76C38FB2C3744AA005E9AB8 /* HomeView.swift */,
+				E76C38F72C374032005E9AB8 /* SettingsView.swift */,
 				0F37E5A72C19373B00574075 /* Assets.xcassets */,
 				0F37E5A92C19373B00574075 /* Preview Content */,
 			);
@@ -137,7 +155,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E76C39022C37516B005E9AB8 /* CardEditView.swift in Sources */,
+				E76C38F82C374032005E9AB8 /* SettingsView.swift in Sources */,
+				E76C38FE2C37481A005E9AB8 /* Card.swift in Sources */,
 				0F37E5A62C19373900574075 /* ContentView.swift in Sources */,
+				E76C38FA2C374165005E9AB8 /* CardsView.swift in Sources */,
+				E76C38FC2C3744AA005E9AB8 /* HomeView.swift in Sources */,
+				E76C39002C375016005E9AB8 /* CardListView.swift in Sources */,
 				0F37E5A42C19373900574075 /* ViewsAndModifiersApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
