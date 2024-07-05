@@ -20,7 +20,7 @@ struct CardListView: View {
                         Text(card.front)
                             .font(.headline)
                         
-                        Text(card.dateAdded.formatted(date: .shortened))
+                        Text(card.dateAdded.formatted())
                     }
                 }
             }

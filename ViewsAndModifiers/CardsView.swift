@@ -16,15 +16,6 @@ struct CardsView: View {
     @State private var sortOrder = SortDescriptor(\Card.dateAdded, order: .reverse)
     @State private var searchText = ""
     
-    
-    
-    
-    
-//    @State private var cardNames = ["Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name", "Card Name"]
-//    @State private var deckCardisIn = ["Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck", "Card Deck"]
-//    @State private var cardTags = ["Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags", "Card Tags"]
-//    @State private var cardNumber = 10
-    
     enum FilterType {
         case none, deck, tagged
     }
@@ -57,9 +48,6 @@ struct CardsView: View {
                             Text("Name")
                                 .tag(SortDescriptor(\Card.front))
                             
-//                            Text("Priority")
-//                                .tag(SortDescriptor(\Card.priority, order: .reverse))
-                            
                             Text("Date")
                                 .tag(SortDescriptor(\Card.dateAdded))
                         }
@@ -71,9 +59,9 @@ struct CardsView: View {
     }
     
     func addSamples() {
-        let rome = Card(id: UUID(), front: "Rome", back: "In Italy", dateAdded: .now)
-        let florence = Card(id: UUID(), front: "Florence", back: "In Italy", dateAdded: .now)
-        let naples = Card(id: UUID(), front: "Naples", back: "In Italy", dateAdded: .now)
+        let rome = Card(front: "Rome")
+        let florence = Card(front: "Florence")
+        let naples = Card(front: "Naples")
         
         modelContext.insert(rome)
         modelContext.insert(florence)
@@ -81,7 +69,7 @@ struct CardsView: View {
     }
     
     func addCard() {
-        let card = Card(id: UUID(), front: "Front", back: "Back", dateAdded: .now)
+        let card = Card()
         modelContext.insert(card)
         path = [card]
     }

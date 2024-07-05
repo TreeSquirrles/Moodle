@@ -35,7 +35,7 @@ struct CardEditView: View {
                 ForEach(card.tags) { tag in
                     Text(tag.tagName)
                 }
-                .onDelete(perform: deleteTags)
+                .onDelete(perform: removeTags)
                 
                 HStack {
                     TextField("Add a new sight in \(card.front)", text: $newTagName)
@@ -64,11 +64,11 @@ struct CardEditView: View {
         try? modelContext.save()
     }
     
-    func deleteTags(_ indexSet: IndexSet) {
+    func removeTags(_ indexSet: IndexSet) {
         for index in indexSet {
             let tag = card.tags[index]
             card.tags.remove(at: index)
-            modelContext.delete(tag)
+            // modelContext.delete(tag)
             try? modelContext.save()
             for tag in tags {
                 print(tag.tagName)
@@ -81,7 +81,7 @@ struct CardEditView: View {
     do {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: Card.self, configurations: config)
-        let example = Card(id: UUID(), front: "Front", back: "Back", dateAdded: .now)
+        let example = Card()
         
         return CardEditView(card: example)
             .modelContainer(container)

@@ -6,6 +6,7 @@
 //test
 
 import SwiftUI
+import SwiftData
 
 struct Buttonn: ViewModifier {
     func body(content: Content) -> some View {
