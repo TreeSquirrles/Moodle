@@ -10,7 +10,7 @@ import SwiftData
 
 struct CardsInTagsView: View {
     @Environment(\.modelContext) var modelContext
-    @Query(sort: [SortDescriptor(\Card.dateAdded, order: .reverse), SortDescriptor(\Card.front)]) var cards: [Card]
+    @Query var cards: [Card]
     
     @Bindable var tag: Tag
     @State private var path = [Card]()
@@ -18,16 +18,21 @@ struct CardsInTagsView: View {
     
     
     var body: some View {
-        Text("Hello, World!")
-        NavigationStack{
-            List{
-                ForEach(cards){card in
+        //Text("Hello, World!")
+        List {
+            ForEach(cards) { card in
+                NavigationLink(value: card) {
                     VStack(alignment: .leading) {
                         Text(card.front)
+                            .font(.headline)
                         
+                        Text(card.dateAdded.formatted())
+                        Text("\(cards.count)")
                     }
                 }
             }
+            .onDelete(perform: removeCardsFromTag)
+        }
         //    CardListView(sort: SortDescriptor(\Card.dateAdded), searchString: "")
         //        .navigationTitle("Tagggg")
                 //.navigationDestination(for: Card.self, destination: CardEditView.init)
@@ -47,7 +52,7 @@ struct CardsInTagsView: View {
 //                        .pickerStyle(.inline)
 //                    }
 //                }
-        }
+//        }
         
     }
     
@@ -68,6 +73,15 @@ struct CardsInTagsView: View {
         //path = [cards[1]]
     }
     
+    
+    func removeCardsFromTag(_ indexSet: IndexSet) {
+        for index in indexSet {
+            let card = cards[index]
+            // // Do something to remove card from the deck
+            //modelContext.delete(card)
+            
+        }
+    }
 }
 
 #Preview {

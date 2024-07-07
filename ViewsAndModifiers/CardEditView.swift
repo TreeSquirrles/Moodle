@@ -66,7 +66,7 @@ struct CardEditView: View {
     
     func removeTags(_ indexSet: IndexSet) {
         for index in indexSet {
-            let tag = card.tags[index]
+            //let tag = card.tags[index]
             card.tags.remove(at: index)
             // modelContext.delete(tag)
             try? modelContext.save()
