@@ -10,16 +10,12 @@ import SwiftData
 
 struct CardsInTagsView: View {
     @Environment(\.modelContext) var modelContext
-    //@Query var cards: [Card]
-    //@Query var tags: [Tag]
     
     @Bindable var tag: Tag
-    //@State private var path = [Card]()
     
     
     
     var body: some View {
-        //Text("Hello, World!")
         List {
             ForEach(tag.cards) { card in
                 NavigationLink(value: card) {
@@ -28,7 +24,6 @@ struct CardsInTagsView: View {
                             .font(.headline)
                         
                         Text(card.dateAdded.formatted())
-                        //("\(tag.cards.count)")
                     }
                 }
             }
@@ -62,29 +57,6 @@ struct CardsInTagsView: View {
         print("====")
         print(self.tag.tagName)
         print("----")
-        
-        
-        //_cards = Query()
-//
-//        _tags = Query(filter: #Predicate {
-//            if taginput.tagName.isEmpty {
-//                return false
-//            } else {
-//                return $0.tagName.localizedStandardContains( taginput.tagName)
-//            }
-//        })
-        
-        
-        //var bbb = false
-//        _cards = Query(filter: #Predicate {
-//            //bbb = false
-////            ForEach($0.tags) { tag in
-////                if tag.tagName.localizedStandardContains( taginput.tagName) {
-////                    bbb = true
-////                }
-////            }
-//            return true
-//        })
     }
     
 
@@ -92,9 +64,7 @@ struct CardsInTagsView: View {
     func removeCardsFromTag(_ indexSet: IndexSet) {
         for index in indexSet {
             let card = tag.cards[index]
-            // // Do something to remove card from the deck
-            //modelContext.delete(card)
-            
+            tag.cards.remove(at: index)
         }
     }
 }
