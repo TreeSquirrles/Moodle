@@ -13,7 +13,7 @@ struct CardsView: View {
     @Environment(\.modelContext) var modelContext
     
     @State private var path = [Card]()
-    @State private var sortOrder = SortDescriptor(\Card.dateAdded, order: .reverse)
+    @State private var sortOrder = SortDescriptor(\Card.dateAdded)
     @State private var searchText = ""
     
     enum FilterType {
@@ -36,7 +36,7 @@ struct CardsView: View {
     var body: some View {
         NavigationStack(path: $path) {
             CardListView(sort: sortOrder, searchString: searchText)
-                .navigationTitle("Title Text")
+                .navigationTitle(title)
                 .navigationDestination(for: Card.self, destination: CardEditView.init)
                 .searchable(text: $searchText)
                 .toolbar {
@@ -57,6 +57,11 @@ struct CardsView: View {
             .navigationTitle(title)
         }
     }
+    
+    init(filter: FilterType) {
+        self.filter = filter
+    }
+    
     
     func addSamples() {
         let rome = Card(front: "Rome")

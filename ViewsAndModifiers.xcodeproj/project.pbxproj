@@ -17,6 +17,9 @@
 		E76C38FE2C37481A005E9AB8 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76C38FD2C37481A005E9AB8 /* Card.swift */; };
 		E76C39002C375016005E9AB8 /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76C38FF2C375016005E9AB8 /* CardListView.swift */; };
 		E76C39022C37516B005E9AB8 /* CardEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76C39012C37516B005E9AB8 /* CardEditView.swift */; };
+		E7848F0B2C38F3110066D3F5 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7848F0A2C38F3110066D3F5 /* TagsView.swift */; };
+		E7848F0D2C38F3CB0066D3F5 /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7848F0C2C38F3CB0066D3F5 /* TagListView.swift */; };
+		E7848F0F2C3A61F10066D3F5 /* CardsInTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7848F0E2C3A61F10066D3F5 /* CardsInTagsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,9 @@
 		E76C38FD2C37481A005E9AB8 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		E76C38FF2C375016005E9AB8 /* CardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
 		E76C39012C37516B005E9AB8 /* CardEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEditView.swift; sourceTree = "<group>"; };
+		E7848F0A2C38F3110066D3F5 /* TagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
+		E7848F0C2C38F3CB0066D3F5 /* TagListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
+		E7848F0E2C3A61F10066D3F5 /* CardsInTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsInTagsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +71,9 @@
 			children = (
 				0F37E5A32C19373900574075 /* ViewsAndModifiersApp.swift */,
 				0F37E5A52C19373900574075 /* ContentView.swift */,
+				E7848F0A2C38F3110066D3F5 /* TagsView.swift */,
+				E7848F0E2C3A61F10066D3F5 /* CardsInTagsView.swift */,
+				E7848F0C2C38F3CB0066D3F5 /* TagListView.swift */,
 				E76C38FD2C37481A005E9AB8 /* Card.swift */,
 				E76C38F92C374165005E9AB8 /* CardsView.swift */,
 				E76C38FF2C375016005E9AB8 /* CardListView.swift */,
@@ -160,9 +169,12 @@
 				E76C38FE2C37481A005E9AB8 /* Card.swift in Sources */,
 				0F37E5A62C19373900574075 /* ContentView.swift in Sources */,
 				E76C38FA2C374165005E9AB8 /* CardsView.swift in Sources */,
+				E7848F0D2C38F3CB0066D3F5 /* TagListView.swift in Sources */,
 				E76C38FC2C3744AA005E9AB8 /* HomeView.swift in Sources */,
 				E76C39002C375016005E9AB8 /* CardListView.swift in Sources */,
 				0F37E5A42C19373900574075 /* ViewsAndModifiersApp.swift in Sources */,
+				E7848F0F2C3A61F10066D3F5 /* CardsInTagsView.swift in Sources */,
+				E7848F0B2C38F3110066D3F5 /* TagsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

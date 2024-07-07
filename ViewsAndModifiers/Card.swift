@@ -34,7 +34,7 @@ class Tag {
     @Attribute(.unique) var tagName: String
     @Relationship(inverse: \Card.tags) var cards = [Card]()
     
-    init(tagName: String) {
+    init(tagName: String = "My Tag") {
         self.tagName = tagName
         
         //cards = []

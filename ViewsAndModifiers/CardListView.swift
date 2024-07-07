@@ -21,6 +21,7 @@ struct CardListView: View {
                             .font(.headline)
                         
                         Text(card.dateAdded.formatted())
+                        Text("\(cards.count)")
                     }
                 }
             }
@@ -36,6 +37,8 @@ struct CardListView: View {
                 return $0.front.localizedStandardContains(searchString)
             }
         }, sort: [sort])
+//        print("----====-0009999")
+//        print(cards.count)
     }
     
     func deleteCards(_ indexSet: IndexSet) {

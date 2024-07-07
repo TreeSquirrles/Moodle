@@ -51,7 +51,7 @@ struct CardEditView: View {
     init(card: Card) {
         self.card = card
         _tags = Query()
-    } // beeeeep
+    }
     
     func addTag() {
         guard newTagName.isEmpty == false else { return }

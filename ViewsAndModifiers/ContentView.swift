@@ -69,7 +69,7 @@ struct ContentView: View { // Homepage
                         Label("Decks", systemImage: "rectangle.stack")
                     }
                 
-                CardsView(filter: .tagged)
+                TagsView(filter: .tagged)
                     .tabItem {
                         Label("Tags", systemImage: "tag")
                     }
