@@ -8,12 +8,16 @@
 import SwiftData
 import SwiftUI
 
+
+
 struct TagsView: View {
     @Environment(\.modelContext) var modelContext
     
     @State private var path = [Tag]()
     @State private var sortOrder = SortDescriptor(\Tag.tagName)
     @State private var searchText = ""
+    
+    @State private var editMode: EditMode = .inactive
     
     enum FilterType {
         case none, deck, tagged
@@ -35,11 +39,20 @@ struct TagsView: View {
     var body: some View {
         NavigationStack(path: $path) {
             TagListView(searchString: searchText)
+                .environment(\.editMode, $editMode)
                 .navigationTitle("Tags")
-                .navigationDestination(for: Tag.self, destination: CardsInTagsView.init) // ???
+                .navigationDestination(for: Tag.self, destination: CardsInTagsView.init) // it just uses the for variable as the parameter for the init func
                 .searchable(text: $searchText)
                 .toolbar {
-                    Button("Add Samples", action: addSamples)
+                    //Button("Add Samples", action: addSamples)
+                    
+                    Button(action: {
+                        editMode.toggleEditMode(&editMode)
+                    }) {
+                        Label("Delete Tag", systemImage: "trash.fill")
+                    }
+                    .tint(editMode == .inactive ? .blue : .red)
+                    
                     Button("Add Tag", systemImage: "plus", action: addTag)
                     
                     Menu("Sort", systemImage: "arrow.up.arrow.down") {
@@ -56,7 +69,7 @@ struct TagsView: View {
             .navigationTitle("Tags")
         }
     }
-    
+        
     func addSamples() {
         let italy = Tag(tagName: "Italy")
         let england = Tag(tagName: "England")

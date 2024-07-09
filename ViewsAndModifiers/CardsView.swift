@@ -16,6 +16,8 @@ struct CardsView: View {
     @State private var sortOrder = SortDescriptor(\Card.dateAdded)
     @State private var searchText = ""
     
+    @State private var editMode: EditMode = .inactive
+    
     enum FilterType {
         case none, deck, tagged
     }
@@ -36,11 +38,20 @@ struct CardsView: View {
     var body: some View {
         NavigationStack(path: $path) {
             CardListView(sort: sortOrder, searchString: searchText)
+                .environment(\.editMode, $editMode)
                 .navigationTitle(title)
                 .navigationDestination(for: Card.self, destination: CardEditView.init)
                 .searchable(text: $searchText)
                 .toolbar {
-                    Button("Add Samples", action: addSamples)
+                    //Button("Add Samples", action: addSamples)
+                    
+                    Button(action: {
+                        editMode.toggleEditMode(&editMode)
+                    }) {
+                        Label("Delete Tag", systemImage: "trash.fill")
+                    }
+                    .tint(editMode == .inactive ? .blue : .red)
+                    
                     Button("Add Card", systemImage: "plus", action: addCard)
                     
                     Menu("Sort", systemImage: "arrow.up.arrow.down") {

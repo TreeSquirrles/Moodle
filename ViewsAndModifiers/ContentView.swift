@@ -42,6 +42,13 @@ extension View {
     }
 }
 
+extension EditMode {
+    func toggleEditMode(_ editMode: inout EditMode)
+    {
+        editMode = editMode == .inactive ? .active : .inactive
+    }
+}
+
 struct ContentView: View { // Homepage
     @State private var showCredits = false
     @State private var showingActionSheet = false
