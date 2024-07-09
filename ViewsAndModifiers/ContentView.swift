@@ -33,15 +33,9 @@ extension View {
     func button() -> some View {
         modifier(Buttonn())
     }
-}
-
-extension View {
     func title() -> some View {
         modifier(Title())
     }
-}
-
-extension View {
     func Exit() -> some View {
         Text("Drag here to exit view!")
             .padding()
