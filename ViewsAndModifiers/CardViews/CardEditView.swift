@@ -19,7 +19,6 @@ struct CardEditView: View {
         Form {
             TextField("Name", text: $card.front)
             TextField("Details", text: $card.back, axis: .vertical)
-            DatePicker("Date", selection: $card.dateAdded)
             
 //            Section("Level") {
 //                Picker("Level", selection: $card.priority) {
@@ -30,6 +29,8 @@ struct CardEditView: View {
 //                }
 //                .pickerStyle(.segmented)
 //            }
+            
+            NavigationLink("Deck Choose", link: )
             
             Section("Tags") {
                 ForEach(card.tags) { tag in

@@ -19,8 +19,7 @@ struct CardListView: View {
                     VStack(alignment: .leading) {
                         Text(card.front)
                             .font(.headline)
-                        
-                        Text(card.dateAdded.formatted())
+    
                         Text("\(cards.count)")
                     }
                 }
