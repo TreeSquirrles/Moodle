@@ -87,6 +87,13 @@ struct CardEditView: View {
     
     func addTag() {
         guard newTagName.isEmpty == false else { return }
+        for tag in tags {
+            if tag.tagName == newTagName
+            {
+                return
+            }
+        }
+        
         
         withAnimation {
             let tag = Tag(tagName: newTagName)
