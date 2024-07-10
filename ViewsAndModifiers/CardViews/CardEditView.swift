@@ -9,27 +9,59 @@
 import SwiftData
 import SwiftUI
 
+struct DeckChooseView: View {
+    var decks: [Deck]
+    @Bindable var card: Card
+    
+    var body: some View {
+        if decks.isEmpty
+        {
+            Text("Hello!, please don't be sad, but you haven't created a deck yet. Please go to the decks tab to create your deck.")
+        }
+        else
+        {
+            Picker("Deck Choose", selection: $card.deck)
+            {
+                ForEach(decks)
+                {
+                    deck in
+                    Text(deck.front)
+                }
+            }
+        }
+    }
+}
+
+
 struct CardEditView: View {
     @Environment(\.modelContext) var modelContext
     @Bindable var card: Card
     @State private var newTagName = ""
+    
     @Query(sort: [SortDescriptor(\Tag.tagName)]) var tags: [Tag]
+    @Query(sort: [SortDescriptor(\Deck.front)]) var decks: [Deck]
     
     var body: some View {
         Form {
             TextField("Name", text: $card.front)
             TextField("Details", text: $card.back, axis: .vertical)
-            DatePicker("Date", selection: $card.dateAdded)
             
-//            Section("Level") {
-//                Picker("Level", selection: $card.priority) {
-//                    Text("Super ez").tag(1)
-//                    Text("ez").tag(2)
-//                    Text("difficult").tag(3)
-//                    Text("Super difficult").tag(4)
-//                }
-//                .pickerStyle(.segmented)
-//            }
+            //            Section("Level") {
+            //                Picker("Level", selection: $card.priority) {
+            //                    Text("Super ez").tag(1)
+            //                    Text("ez").tag(2)
+            //                    Text("difficult").tag(3)
+            //                    Text("Super difficult").tag(4)
+            //                }
+            //                .pickerStyle(.segmented)
+            //            }
+            
+            
+            
+            NavigationLink(destination:DeckChooseView(decks: decks, card: card))
+            {
+                Text("Choose your deck (required)")
+            }
             
             Section("Tags") {
                 ForEach(card.tags) { tag in

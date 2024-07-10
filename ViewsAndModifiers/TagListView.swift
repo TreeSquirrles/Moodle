@@ -12,6 +12,7 @@ struct TagListView: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: [SortDescriptor(\Tag.tagName)]) var tags: [Tag]
     
+    
     var body: some View {
         List {
             ForEach(tags) { tag in
@@ -23,7 +24,7 @@ struct TagListView: View {
                     }
                 }
             }
-            .onDelete(perform: deleteCards)
+            .onDelete(perform: deleteTag)
         }
     }
     
@@ -37,7 +38,7 @@ struct TagListView: View {
         }, sort: [SortDescriptor(\Tag.tagName)])
     }
     
-    func deleteCards(_ indexSet: IndexSet) {
+    func deleteTag(_ indexSet: IndexSet) {
         for index in indexSet {
             let tag = tags[index]
             modelContext.delete(tag)
