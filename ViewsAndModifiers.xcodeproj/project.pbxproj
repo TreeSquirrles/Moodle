@@ -20,6 +20,7 @@
 		E7848F0B2C38F3110066D3F5 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7848F0A2C38F3110066D3F5 /* TagsView.swift */; };
 		E7848F0D2C38F3CB0066D3F5 /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7848F0C2C38F3CB0066D3F5 /* TagListView.swift */; };
 		E7848F0F2C3A61F10066D3F5 /* CardsInTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7848F0E2C3A61F10066D3F5 /* CardsInTagsView.swift */; };
+		E7848F112C3D03E30066D3F5 /* CardInTagEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7848F102C3D03E30066D3F5 /* CardInTagEditView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		E7848F0A2C38F3110066D3F5 /* TagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
 		E7848F0C2C38F3CB0066D3F5 /* TagListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
 		E7848F0E2C3A61F10066D3F5 /* CardsInTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsInTagsView.swift; sourceTree = "<group>"; };
+		E7848F102C3D03E30066D3F5 /* CardInTagEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInTagEditView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				0F37E5A52C19373900574075 /* ContentView.swift */,
 				E7848F0A2C38F3110066D3F5 /* TagsView.swift */,
 				E7848F0E2C3A61F10066D3F5 /* CardsInTagsView.swift */,
+				E7848F102C3D03E30066D3F5 /* CardInTagEditView.swift */,
 				E7848F0C2C38F3CB0066D3F5 /* TagListView.swift */,
 				E76C38FD2C37481A005E9AB8 /* Card.swift */,
 				E76C38F92C374165005E9AB8 /* CardsView.swift */,
@@ -172,6 +175,7 @@
 				E7848F0D2C38F3CB0066D3F5 /* TagListView.swift in Sources */,
 				E76C38FC2C3744AA005E9AB8 /* HomeView.swift in Sources */,
 				E76C39002C375016005E9AB8 /* CardListView.swift in Sources */,
+				E7848F112C3D03E30066D3F5 /* CardInTagEditView.swift in Sources */,
 				0F37E5A42C19373900574075 /* ViewsAndModifiersApp.swift in Sources */,
 				E7848F0F2C3A61F10066D3F5 /* CardsInTagsView.swift in Sources */,
 				E7848F0B2C38F3110066D3F5 /* TagsView.swift in Sources */,

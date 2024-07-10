@@ -25,6 +25,8 @@ struct CardsInTagsView: View {
                         
                         Text(card.dateAdded.formatted())
                     }
+                    .navigationTitle(tag.tagName)
+                    .navigationDestination(for: Card.self, destination: CardInTagEditView.init)
                 }
             }
             .onDelete(perform: removeCardsFromTag)
