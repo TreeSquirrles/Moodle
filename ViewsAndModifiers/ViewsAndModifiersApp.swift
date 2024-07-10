@@ -10,10 +10,27 @@ import SwiftData
 
 @main
 struct ViewsAndModifiersApp: App {
+
+    
+    
+//    let modelContainer : ModelContainer
+    
+//    init() {
+//        do {
+//            modelContainer = try ModelContainer(for: Card.self)
+//        } catch {
+//            fatalError("Could not initialize ModelContainer")
+//        }
+//    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            VStack{
+                ContentView()
+            }
         }
         .modelContainer(for: Card.self)
+        
     }
+    
 }

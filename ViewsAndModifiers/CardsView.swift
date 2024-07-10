@@ -13,7 +13,7 @@ struct CardsView: View {
     @Environment(\.modelContext) var modelContext
     
     
-    @State private var path: [AnyMoodle] = [AnyMoodle]()
+    @State private var path:[Card] = [Card]()
     @State private var sortOrder = SortDescriptor(\Card.dateAdded)
     @State private var searchText = ""
     
@@ -41,14 +41,8 @@ struct CardsView: View {
             CardListView(sort: sortOrder, searchString: searchText)
                 .environment(\.editMode, $editMode)
                 .navigationTitle(title)
-                .navigationDestination(for: AnyMoodle.self, destination: { item in
-                    if let card = item.wrapped as? Card {
-                        CardEditView(card: card)
-                    } else if let deck = item.wrapped as? Deck {
-                        DeckEditView(deck: deck)
-                    } else {
-                        Text("Unknown item")
-                    }
+                .navigationDestination(for: Card.self, destination: { item in
+                    CardEditView(card: item)
                 })
                 .searchable(text: $searchText)
                 .toolbar {
@@ -96,7 +90,7 @@ struct CardsView: View {
     func addCard() {
         let card = Card()
         modelContext.insert(card)
-        path = [AnyMoodle(card)]
+        path = [card]
     }
     
 }
