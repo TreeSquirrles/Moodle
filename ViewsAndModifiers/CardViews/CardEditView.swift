@@ -41,6 +41,8 @@ struct CardEditView: View {
     @Query(sort: [SortDescriptor(\Tag.tagName)]) var tags: [Tag]
     @Query(sort: [SortDescriptor(\Deck.front)]) var decks: [Deck]
     
+    @State private var duplicateTagAlert: Bool = false
+    
     var body: some View {
         Form {
             TextField("Name", text: $card.front)
@@ -64,6 +66,7 @@ struct CardEditView: View {
             }
             
             Section("Tags") {
+                
                 ForEach(card.tags) { tag in
                     Text(tag.tagName)
                 }
@@ -78,6 +81,11 @@ struct CardEditView: View {
         }
         .navigationTitle("Edit Card")
         .navigationBarTitleDisplayMode(.inline)
+        .alert("Duplicate Tag", isPresented: $duplicateTagAlert){
+            Button("I understand", role: .cancel) {}
+        } message: {
+            Text("You tried to add a tag that is already tagged on this card")
+        }
     }
     
     init(card: Card) {
@@ -87,19 +95,33 @@ struct CardEditView: View {
     
     func addTag() {
         guard newTagName.isEmpty == false else { return }
-        for tag in tags {
+        for tag in card.tags {
             if tag.tagName == newTagName
             {
+                duplicateTagAlert = true
                 return
             }
         }
         
+        var t: Tag?
+        
+        for tag in tags
+        {
+            if tag.tagName == newTagName
+            {
+                t = tag
+                break
+            }
+            t = nil
+        }
         
         withAnimation {
-            let tag = Tag(tagName: newTagName)
+            
+            let tag = t ?? Tag(tagName: newTagName)
             card.tags.append(tag)
-            newTagName = ""
+            
         }
+        newTagName = ""
         try? modelContext.save()
     }
     
