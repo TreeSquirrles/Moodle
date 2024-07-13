@@ -60,12 +60,12 @@ struct ContentView: View { // Homepage
                     .tabItem{
                         Label("Home", systemImage: "house.fill")
                     }
-                CardsView(filter: .none)
+                CardsView()
                     .tabItem {
                         Label("All Cards", systemImage: "rectangle.on.rectangle.angled")
                     }
                 
-                CardsView(filter: .deck)
+                DeckView()
                     .tabItem {
                         Label("Decks", systemImage: "rectangle.stack")
                     }

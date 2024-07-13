@@ -25,9 +25,9 @@ struct DeckView: View {
             DeckListView()
                 .environment(\.editMode, $editMode)
                 .navigationTitle("Decks")
-//                .navigationDestination(for: Deck.self, destination: { item in
-//                    CardsView(card: item)
-//                }) // Deal with this later
+                .navigationDestination(for: Deck.self, destination: { item in
+                    CardsInDeckView(deckinput: item)
+                }) // Deal with this later
                 .searchable(text: $searchText)
                 .toolbar {
                     //Button("Add Samples", action: addSamples)
@@ -55,7 +55,7 @@ struct DeckView: View {
         }
     }
     
-    init(deck: Deck) {
+    init(deck: Deck = Deck(name: "My Deck")) {
         self.deck = deck
     }
     

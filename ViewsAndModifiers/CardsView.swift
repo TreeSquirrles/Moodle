@@ -23,24 +23,24 @@ struct CardsView: View {
         case none, deck, tagged
     }
     
-    let filter: FilterType
-    
-    var title: String {
-        switch filter {
-        case .none:
-            "All Cards"
-        case .deck:
-            "Cards in _deckname_"
-        case .tagged:
-            "Cards tagged with _tagname_"
-        }
-    }
+//    let filter: FilterType
+//    
+//    var title: String {
+//        switch filter {
+//        case .none:
+//            "All Cards"
+//        case .deck:
+//            "Cards in _deckname_"
+//        case .tagged:
+//            "Cards tagged with _tagname_"
+//        }
+//    }
     
     var body: some View {
         NavigationStack(path: $path) {
             CardListView(sort: sortOrder, searchString: searchText)
                 .environment(\.editMode, $editMode)
-                .navigationTitle(title)
+                .navigationTitle("All Cards")
                 .navigationDestination(for: Card.self, destination: { item in
                     CardEditView(card: item)
                 })
@@ -68,12 +68,11 @@ struct CardsView: View {
                         .pickerStyle(.inline)
                     }
                 }
-            .navigationTitle(title)
         }
     }
     
-    init(filter: FilterType) {
-        self.filter = filter
+    init() {
+//        self.filter = filter
     }
     
     
@@ -96,5 +95,5 @@ struct CardsView: View {
 }
 
 #Preview {
-    CardsView(filter: .none)
+    CardsView()
 }
