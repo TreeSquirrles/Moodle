@@ -104,19 +104,12 @@ class Deck {
     @Attribute(.unique) var id: Int64
     @Attribute(.unique) var name: String
     
-    var front: String
-    var back: String
-    var dateAdded: Date
-    
     @Relationship(inverse: \Card.deck) var cards = [Card]()
     
-    init(id:Int64 = Int64.random(in: Int64.min...Int64.max), name: String = "My Deck", front: String = "", back: String = "", cards: [Card] = [Card]()) {
+    init(id:Int64 = Int64.random(in: Int64.min...Int64.max), name: String = "My Deck", cards: [Card] = [Card]()) {
         self.id = id
         self.name = name
-        self.front = front
-        self.back = back
         self.cards = cards
-        self.dateAdded = Date.now
     }
 }
 

@@ -23,6 +23,7 @@
 		E7848F0D2C38F3CB0066D3F5 /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7848F0C2C38F3CB0066D3F5 /* TagListView.swift */; };
 		E7848F0F2C3A61F10066D3F5 /* CardsInTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7848F0E2C3A61F10066D3F5 /* CardsInTagsView.swift */; };
 		E7848F112C3D03E30066D3F5 /* CardInTagEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7848F102C3D03E30066D3F5 /* CardInTagEditView.swift */; };
+		E79A3B432C42007700ACB12A /* DeckListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79A3B422C42007700ACB12A /* DeckListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		E7848F0C2C38F3CB0066D3F5 /* TagListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
 		E7848F0E2C3A61F10066D3F5 /* CardsInTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsInTagsView.swift; sourceTree = "<group>"; };
 		E7848F102C3D03E30066D3F5 /* CardInTagEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInTagEditView.swift; sourceTree = "<group>"; };
+		E79A3B422C42007700ACB12A /* DeckListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 			children = (
 				473887A32C3E3D3900430A67 /* DeckEditView.swift */,
 				4738879F2C3E26DD00430A67 /* DeckView.swift */,
+				E79A3B422C42007700ACB12A /* DeckListView.swift */,
 			);
 			path = DeckViews;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				473887A02C3E26DD00430A67 /* DeckView.swift in Sources */,
 				0F37E5A62C19373900574075 /* ContentView.swift in Sources */,
 				E76C38FA2C374165005E9AB8 /* CardsView.swift in Sources */,
+				E79A3B432C42007700ACB12A /* DeckListView.swift in Sources */,
 				E7848F0D2C38F3CB0066D3F5 /* TagListView.swift in Sources */,
 				E76C38FC2C3744AA005E9AB8 /* HomeView.swift in Sources */,
 				E76C39002C375016005E9AB8 /* CardListView.swift in Sources */,

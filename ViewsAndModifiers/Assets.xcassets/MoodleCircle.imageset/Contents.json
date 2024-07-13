@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "MoodleCircle.jpg",
+      "filename" : "MoodleCircle.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "MoodleCircle 1.jpg",
+      "filename" : "MoodleCircle 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "MoodleCircle 2.jpg",
+      "filename" : "MoodleCircle 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

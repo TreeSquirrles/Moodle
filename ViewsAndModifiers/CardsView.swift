@@ -5,8 +5,8 @@
 //  Created by Seungyoo Kim-Jung on 7/4/24.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 
 struct CardsView: View {

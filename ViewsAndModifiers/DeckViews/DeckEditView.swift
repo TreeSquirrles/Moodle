@@ -5,12 +5,26 @@
 //  Created by TreeSquirrles on 7/9/24.
 //
 
+import SwiftData
 import SwiftUI
 
 struct DeckEditView: View {
+    @Environment(\.modelContext) var modelContext
     @Bindable var deck: Deck
+    @State private var newDeckName = ""
+    
+    
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Form {
+            TextField("Name", text: $deck.name)
+            
+            Section("Cards") {
+                ForEach(deck.cards) { card in
+                    Text(card.front)
+                }
+            }
+        }
     }
     
     

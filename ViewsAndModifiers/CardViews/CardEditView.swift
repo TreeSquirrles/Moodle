@@ -14,18 +14,13 @@ struct DeckChooseView: View {
     @Bindable var card: Card
     
     var body: some View {
-        if decks.isEmpty
-        {
+        if decks.isEmpty {
             Text("Hello!, please don't be sad, but you haven't created a deck yet. Please go to the decks tab to create your deck.")
-        }
-        else
-        {
-            Picker("Deck Choose", selection: $card.deck)
-            {
-                ForEach(decks)
-                {
+        } else {
+            Picker("Deck Choose", selection: $card.deck) {
+                ForEach(decks) {
                     deck in
-                    Text(deck.front)
+                    Text(deck.name)
                 }
             }
         }
@@ -39,7 +34,7 @@ struct CardEditView: View {
     @State private var newTagName = ""
     
     @Query(sort: [SortDescriptor(\Tag.tagName)]) var tags: [Tag]
-    @Query(sort: [SortDescriptor(\Deck.front)]) var decks: [Deck]
+    @Query(sort: [SortDescriptor(\Deck.name)]) var decks: [Deck]
     
     var body: some View {
         Form {
@@ -58,8 +53,7 @@ struct CardEditView: View {
             
             
             
-            NavigationLink(destination:DeckChooseView(decks: decks, card: card))
-            {
+            NavigationLink(destination:DeckChooseView(decks: decks, card: card)) {
                 Text("Choose your deck (required)")
             }
             
@@ -70,7 +64,7 @@ struct CardEditView: View {
                 .onDelete(perform: removeTags)
                 
                 HStack {
-                    TextField("Add a new sight in \(card.front)", text: $newTagName)
+                    TextField("Put a tag on \(card.front)", text: $newTagName)
                     
                     Button("Add", action: addTag)
                 }
@@ -87,7 +81,7 @@ struct CardEditView: View {
     
     func addTag() {
         guard newTagName.isEmpty == false else { return }
-        for tag in tags {
+        for tag in card.tags {
             if tag.tagName == newTagName
             {
                 return

@@ -5,8 +5,8 @@
 //  Created by Seungyoo Kim-Jung on 7/4/24.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct CardListView: View {
     @Environment(\.modelContext) var modelContext
@@ -20,7 +20,7 @@ struct CardListView: View {
                         Text(card.front)
                             .font(.headline)
     
-                        Text("\(cards.count)")
+                        //Text("\(cards.count)")
                     }
                 }
             }

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Moodle.jpg",
+      "filename" : "Moodle.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Moodle 1.jpg",
+      "filename" : "Moodle 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Moodle 2.jpg",
+      "filename" : "Moodle 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
