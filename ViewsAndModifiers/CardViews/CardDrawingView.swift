@@ -9,14 +9,15 @@ import PencilKit
 import SwiftUI
 
 struct CardDrawingView: View {
+    @State private var columnVisibility = NavigationSplitViewVisibility.doubleColumn
+    
     var body: some View {
-        NavigationSplitView {
-            Text("Sidebar")
-        } content: {
-            FreeFormDrawingView() // 1
-        } detail: {
-            FreeFormDrawingView() // 2
+        HStack{
+            FreeFormDrawingView()
+            Image("Divider")
+            FreeFormDrawingView()
         }
+
     }
 }
 
@@ -28,17 +29,14 @@ struct FreeFormDrawingView: View {
     @State private var colorPicker = false
     @Environment(\.undoManager) private var undoManager
     
+    @State private var clearCanvas = false
+    
     
     var body: some View {
         NavigationStack{
             DrawingView(canvas: $canvas, isDrawing: $isDrawing, pencilType: $pencilType, color: $color)
                 .toolbar{
-                    ToolbarItemGroup(placement: .bottomBar){
-                        Button {
-                            canvas.drawing = PKDrawing()
-                        } label: {
-                            Image(systemName: "scissors")
-                        }
+                    ToolbarItemGroup(placement: .automatic){
                         
                         Button {
                             isDrawing = true
@@ -68,6 +66,17 @@ struct FreeFormDrawingView: View {
                         Divider()
                             .rotationEffect(.degrees(90))
                         
+                        Button (role: .destructive) {
+                            clearCanvas = true
+                        } label: {
+                            Image(systemName: "trash")
+                        }
+                        .foregroundStyle(.red)
+                        
+                        Divider()
+                            .rotationEffect(.degrees(90))
+                        
+                        
                         Button {
                             saveDrawing()
                         } label: {
@@ -77,12 +86,24 @@ struct FreeFormDrawingView: View {
                     }
                 }
         }
+        .alert("WARNING", isPresented: $clearCanvas) {
+            Button("Delete", role: .destructive, action: newCanvas)
+                .fontWeight(.bold)
+        } message: {
+            Text("Are you sure you want to clear canvas?")
+        }
+    }
+    
+    func newCanvas() {
+        canvas.drawing = PKDrawing()
+        clearCanvas = false
     }
     
     func saveDrawing() {
         let drawingImage = canvas.drawing.image(from: canvas.drawing.bounds, scale: 1.0)
         
-        UIImageWriteToSavedPhotosAlbum(drawingImage, nil, nil, nil)
+        // Does not work. Needs to be stored using the SwiftData
+        // // UIImageWriteToSavedPhotosAlbum(drawingImage, nil, nil, nil)
     }
 }
 

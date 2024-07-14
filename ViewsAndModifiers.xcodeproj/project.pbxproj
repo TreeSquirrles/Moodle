@@ -82,7 +82,6 @@
 			isa = PBXGroup;
 			children = (
 				0F37E5A32C19373900574075 /* ViewsAndModifiersApp.swift */,
-				E79A3B602C436DA300ACB12A /* CardDrawingView.swift */,
 				0F37E5A52C19373900574075 /* ContentView.swift */,
 				E7848F0A2C38F3110066D3F5 /* TagsView.swift */,
 				E7848F0E2C3A61F10066D3F5 /* CardsInTagsView.swift */,
@@ -122,6 +121,7 @@
 		4738879E2C3E26BD00430A67 /* CardViews */ = {
 			isa = PBXGroup;
 			children = (
+				E79A3B602C436DA300ACB12A /* CardDrawingView.swift */,
 				E76C38FF2C375016005E9AB8 /* CardListView.swift */,
 				E76C39012C37516B005E9AB8 /* CardEditView.swift */,
 			);

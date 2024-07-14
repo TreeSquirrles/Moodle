@@ -59,6 +59,14 @@ struct CardEditView: View {
                 Text("Choose your deck (required)")
             }
             
+//            Section("Card Drawing") {
+//                NavigationLink(destination: CardDrawingView()) {
+//                    Text("Draw front and back")
+//                }
+//                .navigationDestination(for: Card.self, destination: { item in  CardDrawingView()})
+//            }
+            
+            
             Section("Tags") {
                 
                 ForEach(card.tags) { tag in
