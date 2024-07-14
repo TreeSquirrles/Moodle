@@ -25,6 +25,7 @@
 		E7848F112C3D03E30066D3F5 /* CardInTagEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7848F102C3D03E30066D3F5 /* CardInTagEditView.swift */; };
 		E79A3B432C42007700ACB12A /* DeckListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79A3B422C42007700ACB12A /* DeckListView.swift */; };
 		E79A3B452C4237CB00ACB12A /* CardsInDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79A3B442C4237CB00ACB12A /* CardsInDeckView.swift */; };
+		E79A3B612C436DA300ACB12A /* CardDrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79A3B602C436DA300ACB12A /* CardDrawingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		E7848F102C3D03E30066D3F5 /* CardInTagEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInTagEditView.swift; sourceTree = "<group>"; };
 		E79A3B422C42007700ACB12A /* DeckListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckListView.swift; sourceTree = "<group>"; };
 		E79A3B442C4237CB00ACB12A /* CardsInDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsInDeckView.swift; sourceTree = "<group>"; };
+		E79A3B602C436DA300ACB12A /* CardDrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDrawingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				0F37E5A32C19373900574075 /* ViewsAndModifiersApp.swift */,
+				E79A3B602C436DA300ACB12A /* CardDrawingView.swift */,
 				0F37E5A52C19373900574075 /* ContentView.swift */,
 				E7848F0A2C38F3110066D3F5 /* TagsView.swift */,
 				E7848F0E2C3A61F10066D3F5 /* CardsInTagsView.swift */,
@@ -211,6 +214,7 @@
 				E7848F0F2C3A61F10066D3F5 /* CardsInTagsView.swift in Sources */,
 				473887A42C3E3D3900430A67 /* DeckEditView.swift in Sources */,
 				E7848F0B2C38F3110066D3F5 /* TagsView.swift in Sources */,
+				E79A3B612C436DA300ACB12A /* CardDrawingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
