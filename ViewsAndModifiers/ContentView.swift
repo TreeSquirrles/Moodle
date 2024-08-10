@@ -78,10 +78,10 @@ struct ContentView: View { // Homepage
                     .tabItem {
                         Label("Credits", systemImage: "gearshape.fill")
                     }
-                CardDrawingView()
-                    .tabItem {
-                        Label("Drawing Tool", systemImage: "circle")
-                    }
+//                CardDrawingView()
+//                    .tabItem {
+//                        Label("Drawing Tool", systemImage: "circle")
+//                    }
             }
         }
     }
