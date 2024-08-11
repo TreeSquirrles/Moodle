@@ -72,7 +72,7 @@ extension PersistentModel {
 // Danger!!! Don't give id a UUID type. for some reason it won't compile anymore
 // Danger!!! @Model macro really hates this one trick: having your model conform to another protocol.
 @Model
-class Card{
+class Card: Hashable{
     @Attribute(.unique) var id: Int64
     var front: String
     var back: String
@@ -90,6 +90,10 @@ class Card{
         self.deck = deck
         
         //self.tags = []
+    }
+    
+    func hash(into hasher: inout Hasher){
+        hasher.combine(id)
     }
 }
 

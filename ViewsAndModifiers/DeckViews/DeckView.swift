@@ -21,13 +21,13 @@ struct DeckView: View {
     @Query(sort: [SortDescriptor(\Deck.name)]) var decks: [Deck]
     
     var body: some View {
-        NavigationView{
+        NavigationStack {
             DeckListView()
-                .environment(\.editMode, $editMode)
-                .navigationTitle("Decks")
                 .navigationDestination(for: Deck.self, destination: { item in
                     CardsInDeckView(deckinput: item)
                 }) // Deal with this later
+                .environment(\.editMode, $editMode)
+                .navigationTitle("Decks")
                 .searchable(text: $searchText)
                 .toolbar {
                     //Button("Add Samples", action: addSamples)
@@ -52,6 +52,7 @@ struct DeckView: View {
                         .pickerStyle(.inline)
                     }
                 }
+            
         }
     }
     

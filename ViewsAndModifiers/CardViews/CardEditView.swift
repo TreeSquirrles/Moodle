@@ -8,30 +8,15 @@
 
 import SwiftData
 import SwiftUI
-
-struct DeckChooseView: View {
-    var decks: [Deck]
-    @Bindable var card: Card
-    
-    var body: some View {
-        if decks.isEmpty {
-            Text("Hello!, please don't be sad, but you haven't created a deck yet. Please go to the decks tab to create your deck.")
-        } else {
-            Picker("Deck Choose", selection: $card.deck) {
-                ForEach(decks) {
-                    deck in
-                    Text(deck.name)
-                }
-            }
-        }
-    }
-}
+import PencilKit
 
 
 struct CardEditView: View {
+    @State private var path = NavigationPath()
     @Environment(\.modelContext) var modelContext
     @Bindable var card: Card
     @State private var newTagName = ""
+    @State private var disableScroll: Bool = false
     
     @Query(sort: [SortDescriptor(\Tag.tagName)]) var tags: [Tag]
     @Query(sort: [SortDescriptor(\Deck.name)]) var decks: [Deck]
@@ -54,18 +39,21 @@ struct CardEditView: View {
             //            }
             
             
-            
             NavigationLink(destination:DeckChooseView(decks: decks, card: card)) {
                 Text("Choose your deck (required)")
             }
             
-            Section("Card Drawing") {
-                NavigationLink(destination: CardDrawingView()) {
-                    Text("Draw front and back")
+            VStack{
+                Button("\(disableScroll ? "Enable" : "Disable") Scroll") {
+                    disableScroll.toggle()
                 }
-                .navigationDestination(for: Card.self, destination: { item in  CardDrawingView()})
+                HStack{
+                    FreeFormDrawingView()
+                    //.gesture(DragGesture(minimumDistance: 0))
+                    Image("Divider")
+                    FreeFormDrawingView()
+                }//.scrollDisabled(true)
             }
-            
             
             Section("Tags") {
                 
@@ -80,14 +68,17 @@ struct CardEditView: View {
                     Button("Add", action: addTag)
                 }
             }
+            //.navigationTitle("Edit Card")
+            //.navigationBarTitleDisplayMode(.inline)
+            .alert("Duplicate Tag", isPresented: $duplicateTagAlert){
+                Button("I understand", role: .cancel) {}
+            } message: {
+                Text("You tried to add a tag that is already tagged on this card")
+            }
+            
         }
-        .navigationTitle("Edit Card")
-        .navigationBarTitleDisplayMode(.inline)
-        .alert("Duplicate Tag", isPresented: $duplicateTagAlert){
-            Button("I understand", role: .cancel) {}
-        } message: {
-            Text("You tried to add a tag that is already tagged on this card")
-        }
+        .scrollDisabled(disableScroll)
+        
     }
     
     init(card: Card) {
@@ -152,3 +143,141 @@ struct CardEditView: View {
         fatalError("Failed to create model container.")
     }
 }
+
+
+struct DeckChooseView: View {
+    var decks: [Deck]
+    @Bindable var card: Card
+    
+    var body: some View {
+        if decks.isEmpty {
+            Text("Hello!, please don't be sad, but you haven't created a deck yet. Please go to the decks tab to create your deck.")
+        } else {
+            Picker("Deck Choose", selection: $card.deck) {
+                ForEach(decks) {
+                    deck in
+                    Text(deck.name)
+                }
+            }
+        }
+    }
+}
+
+
+struct FreeFormDrawingView: View {
+    @State private var canvas = PKCanvasView()
+    @State private var isDrawing = true
+    @State private var color: Color = .black
+    @State private var pencilType: PKInkingTool.InkType = .pen
+    @State private var colorPicker = false
+    @Environment(\.undoManager) private var undoManager
+    
+    @State private var clearCanvas = false
+    
+    
+    var body: some View {
+        DrawingView(canvas: $canvas, isDrawing: $isDrawing, pencilType: $pencilType, color: $color)
+            .toolbar{
+                ToolbarItemGroup(placement: .automatic){
+                    
+                    Button {
+                        isDrawing = true
+                        pencilType = .pen
+                    } label: {
+                        Image(systemName: "pencil")
+                    }
+                    
+                    Button {
+                        undoManager?.undo()
+                    } label: {
+                        Image(systemName: "arrow.uturn.backward")
+                    }
+                    
+                    Button {
+                        undoManager?.redo()
+                    } label: {
+                        Image(systemName: "arrow.uturn.forward")
+                    }
+                    
+                    Button {
+                        isDrawing = false
+                    } label: {
+                        Image(systemName: "eraser.line.dashed")
+                    }
+                    
+//                        Divider()
+//                            .rotationEffect(.degrees(90))
+                    
+                    Button (role: .destructive) {
+                        clearCanvas = true
+                    } label: {
+                        Image(systemName: "trash")
+                    }
+                    .foregroundStyle(.red)
+                    
+//                        Divider()
+//                            .rotationEffect(.degrees(90))
+                    
+                    
+                    Button {
+                        saveDrawing()
+                    } label: {
+                        Image(systemName: "square.and.arrow.down.on.square")
+                    }
+                    
+                }
+            }
+        .alert("WARNING", isPresented: $clearCanvas) {
+            Button("Delete", role: .destructive, action: newCanvas)
+                .fontWeight(.bold)
+        } message: {
+            Text("Are you sure you want to clear canvas?")
+        }
+    }
+    
+    func newCanvas() {
+        canvas.drawing = PKDrawing()
+        clearCanvas = false
+    }
+    
+    func saveDrawing() {
+        let drawingImage = canvas.drawing.image(from: canvas.drawing.bounds, scale: 1.0)
+        
+        // Does not work. Needs to be stored using the SwiftData
+        // // UIImageWriteToSavedPhotosAlbum(drawingImage, nil, nil, nil)
+    }
+}
+
+struct DrawingView: UIViewRepresentable {
+    @Binding var canvas: PKCanvasView
+    @Binding var isDrawing: Bool
+    @Binding var pencilType: PKInkingTool.InkType
+    @Binding var color: Color
+    
+    var ink: PKInkingTool {
+        PKInkingTool(pencilType, color: UIColor(color))
+    }
+    
+    let eraser = PKEraserTool(.bitmap)
+    
+    
+    
+    func makeUIView(context: Context) -> PKCanvasView {
+        canvas.drawingPolicy = .anyInput
+        canvas.tool = isDrawing ? ink: eraser
+        canvas.alwaysBounceVertical = true
+        
+        let toolPicker = PKToolPicker.init()
+        toolPicker.setVisible(true, forFirstResponder: canvas)
+        toolPicker.addObserver(canvas)
+        canvas.becomeFirstResponder()
+        return canvas
+        
+    }
+    
+    func updateUIView(_ uiView: PKCanvasView, context: Context) {
+        uiView.tool = isDrawing ? ink : eraser
+    }
+}
+
+
