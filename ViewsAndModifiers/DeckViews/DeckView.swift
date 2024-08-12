@@ -10,7 +10,7 @@ import SwiftUI
 
 struct DeckView: View {
     @Environment(\.modelContext) var modelContext
-    @State private var path:[Deck] = [Deck]()
+    @State private var path = NavigationPath()
     @Bindable var deck: Deck
     
     @State private var sortOrder = SortDescriptor(\Deck.name)
@@ -39,7 +39,7 @@ struct DeckView: View {
                     }
                     .tint(editMode == .inactive ? .blue : .red)
                     
-                    Button("Add Card", systemImage: "plus", action: addCard)
+                    Button("Add Card", systemImage: "plus", action: addDeck)
                     
                     Menu("Sort", systemImage: "arrow.up.arrow.down") {
                         Picker("Sort", selection: $sortOrder) {
@@ -70,10 +70,10 @@ struct DeckView: View {
         modelContext.insert(spain)
     }
     
-    func addCard() {
+    func addDeck() {
         let deck = Deck()
         modelContext.insert(deck)
-        path = [deck]
+        path.append(deck)
     }
 }
 

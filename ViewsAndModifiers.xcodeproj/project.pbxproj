@@ -22,7 +22,6 @@
 		E7848F0B2C38F3110066D3F5 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7848F0A2C38F3110066D3F5 /* TagsView.swift */; };
 		E7848F0D2C38F3CB0066D3F5 /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7848F0C2C38F3CB0066D3F5 /* TagListView.swift */; };
 		E7848F0F2C3A61F10066D3F5 /* CardsInTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7848F0E2C3A61F10066D3F5 /* CardsInTagsView.swift */; };
-		E7848F112C3D03E30066D3F5 /* CardInTagEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7848F102C3D03E30066D3F5 /* CardInTagEditView.swift */; };
 		E79A3B432C42007700ACB12A /* DeckListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79A3B422C42007700ACB12A /* DeckListView.swift */; };
 		E79A3B452C4237CB00ACB12A /* CardsInDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79A3B442C4237CB00ACB12A /* CardsInDeckView.swift */; };
 /* End PBXBuildFile section */
@@ -44,7 +43,6 @@
 		E7848F0A2C38F3110066D3F5 /* TagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
 		E7848F0C2C38F3CB0066D3F5 /* TagListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
 		E7848F0E2C3A61F10066D3F5 /* CardsInTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsInTagsView.swift; sourceTree = "<group>"; };
-		E7848F102C3D03E30066D3F5 /* CardInTagEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInTagEditView.swift; sourceTree = "<group>"; };
 		E79A3B422C42007700ACB12A /* DeckListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckListView.swift; sourceTree = "<group>"; };
 		E79A3B442C4237CB00ACB12A /* CardsInDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsInDeckView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,14 +79,11 @@
 			children = (
 				0F37E5A32C19373900574075 /* ViewsAndModifiersApp.swift */,
 				0F37E5A52C19373900574075 /* ContentView.swift */,
-				E7848F0A2C38F3110066D3F5 /* TagsView.swift */,
-				E7848F0E2C3A61F10066D3F5 /* CardsInTagsView.swift */,
-				E7848F102C3D03E30066D3F5 /* CardInTagEditView.swift */,
-				E7848F0C2C38F3CB0066D3F5 /* TagListView.swift */,
 				E76C38FD2C37481A005E9AB8 /* Card.swift */,
-				E76C38F92C374165005E9AB8 /* CardsView.swift */,
+				E76C39012C37516B005E9AB8 /* CardEditView.swift */,
 				4738879E2C3E26BD00430A67 /* CardViews */,
 				4738879D2C3E26A700430A67 /* DeckViews */,
+				E73275812C69D1A900C63AF4 /* TagViews */,
 				E76C38FB2C3744AA005E9AB8 /* HomeView.swift */,
 				E76C38F72C374032005E9AB8 /* SettingsView.swift */,
 				0F37E5A72C19373B00574075 /* Assets.xcassets */,
@@ -120,9 +115,19 @@
 			isa = PBXGroup;
 			children = (
 				E76C38FF2C375016005E9AB8 /* CardListView.swift */,
-				E76C39012C37516B005E9AB8 /* CardEditView.swift */,
+				E76C38F92C374165005E9AB8 /* CardsView.swift */,
 			);
 			path = CardViews;
+			sourceTree = "<group>";
+		};
+		E73275812C69D1A900C63AF4 /* TagViews */ = {
+			isa = PBXGroup;
+			children = (
+				E7848F0A2C38F3110066D3F5 /* TagsView.swift */,
+				E7848F0E2C3A61F10066D3F5 /* CardsInTagsView.swift */,
+				E7848F0C2C38F3CB0066D3F5 /* TagListView.swift */,
+			);
+			path = TagViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,7 +211,6 @@
 				E7848F0D2C38F3CB0066D3F5 /* TagListView.swift in Sources */,
 				E76C38FC2C3744AA005E9AB8 /* HomeView.swift in Sources */,
 				E76C39002C375016005E9AB8 /* CardListView.swift in Sources */,
-				E7848F112C3D03E30066D3F5 /* CardInTagEditView.swift in Sources */,
 				0F37E5A42C19373900574075 /* ViewsAndModifiersApp.swift in Sources */,
 				E7848F0F2C3A61F10066D3F5 /* CardsInTagsView.swift in Sources */,
 				473887A42C3E3D3900430A67 /* DeckEditView.swift in Sources */,

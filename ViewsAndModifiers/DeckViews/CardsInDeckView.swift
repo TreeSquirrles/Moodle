@@ -15,6 +15,10 @@ struct CardsInDeckView: View {
     
     var body: some View {
         List {
+            Section("Name") {
+                TextField("Tag Name", text: $deck.name)
+            }
+            
             ForEach(deck.cards) { card in
                 NavigationLink(value: card) {
                     VStack(alignment: .leading) {

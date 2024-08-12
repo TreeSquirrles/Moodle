@@ -81,13 +81,18 @@ class Card: Hashable{
     var tags = [Tag]()
     var deck: Deck?
     
-    init(id: Int64 = Int64.random(in: Int64.min...Int64.max), front: String = "Front", back: String = "Back", deck: Deck? = nil) {
+    @Attribute(.externalStorage) var drawingFront: Data?
+    @Attribute(.externalStorage) var drawingBack: Data?
+
+    init(id: Int64 = Int64.random(in: Int64.min...Int64.max), front: String = "Front", back: String = "Back", deck: Deck? = nil, drawingFront: Data? = nil, drawingBack: Data? = nil) {
         print(URL.applicationSupportDirectory.path(percentEncoded: false))
         self.id = id
         self.front = front
         self.back = back
         self.dateAdded = Date.now
         self.deck = deck
+        self.drawingFront = drawingFront
+        self.drawingBack = drawingBack
         
         //self.tags = []
     }
@@ -104,7 +109,7 @@ extension PersistentIdentifier {
 }
 
 @Model
-class Deck {
+class Deck: Hashable {
     @Attribute(.unique) var id: Int64
     @Attribute(.unique) var name: String
     
@@ -115,11 +120,15 @@ class Deck {
         self.name = name
         self.cards = cards
     }
+    
+    func hash(into hasher: inout Hasher){
+        hasher.combine(id)
+    }
 }
 
 
 @Model
-class Tag {
+class Tag: Hashable {
     @Attribute(.unique) var tagName: String
     @Relationship(inverse: \Card.tags) var cards = [Card]()
     
@@ -127,5 +136,9 @@ class Tag {
         self.tagName = tagName
         
         //cards = []
+    }
+    
+    func hash(into hasher: inout Hasher){
+        hasher.combine(tagName)
     }
 }

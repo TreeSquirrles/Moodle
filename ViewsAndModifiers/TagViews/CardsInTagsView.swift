@@ -14,22 +14,27 @@ struct CardsInTagsView: View {
     @Bindable var tag: Tag
     
     
-    
     var body: some View {
-        List {
-            ForEach(tag.cards) { card in
-                NavigationLink(value: card) {
-                    VStack(alignment: .leading) {
-                        Text(card.front)
-                            .font(.headline)
-                        
-                        Text(card.dateAdded.formatted())
-                    }
-                    .navigationTitle(tag.tagName)
-//                    .navigationDestination(for: Card.self, destination: CardInTagEditView.init)
-                }
+        Form {
+            Section("Name") {
+                TextField("Tag Name", text: $tag.tagName)
             }
-            .onDelete(perform: removeCardsFromTag)
+            
+            List {
+                ForEach(tag.cards) { card in
+                    NavigationLink(value: card) {
+                        VStack(alignment: .leading) {
+                            Text(card.front)
+                                .font(.headline)
+                            
+                            Text(card.dateAdded.formatted())
+                        }
+                        .navigationTitle(tag.tagName)
+                        //                    .navigationDestination(for: Card.self, destination: CardInTagEditView.init)
+                    }
+                }
+                .onDelete(perform: removeCardsFromTag)
+            }
         }
         //    CardListView(sort: SortDescriptor(\Card.dateAdded), searchString: "")
         //        .navigationTitle("Tagggg")

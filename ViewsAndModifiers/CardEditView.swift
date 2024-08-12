@@ -48,10 +48,10 @@ struct CardEditView: View {
                     disableScroll.toggle()
                 }
                 HStack{
-                    FreeFormDrawingView()
+                    FreeFormDrawingView(card: card, isFront: true)
                     //.gesture(DragGesture(minimumDistance: 0))
                     Image("Divider")
-                    FreeFormDrawingView()
+                    FreeFormDrawingView(card: card, isFront: false)
                 }//.scrollDisabled(true)
             }
             
@@ -174,6 +174,11 @@ struct FreeFormDrawingView: View {
     
     @State private var clearCanvas = false
     
+    @Bindable var card: Card
+    
+    @State private var isFront: Bool
+    
+    
     
     var body: some View {
         DrawingView(canvas: $canvas, isDrawing: $isDrawing, pencilType: $pencilType, color: $color)
@@ -235,16 +240,58 @@ struct FreeFormDrawingView: View {
         }
     }
     
+    
+    init(card: Card, isFront: Bool) {
+        self.card = card
+        self.isFront = isFront
+
+        do {
+            if self.isFront {
+                if let ddd = card.drawingFront {
+                    print("before try front")
+                    print(ddd)
+                    canvas.drawing = try PKDrawing.init(data: ddd)
+                    print("after try front")
+                } else {
+                    print("why is front nil????")
+                }
+            } else {
+                if let ddd = card.drawingBack {
+                    print("before try back")
+                    print(ddd)
+                    canvas.drawing = try PKDrawing(data: ddd)
+                    print("after try back")
+                } else {
+                    print("why is back nil????")
+                }
+            }
+        }
+        catch {
+            print("Something went wrong")
+            print(self.isFront)
+            print(card.drawingFront)
+            print(card.drawingBack)
+
+        }
+        
+    }
+    
+    
     func newCanvas() {
         canvas.drawing = PKDrawing()
         clearCanvas = false
     }
     
     func saveDrawing() {
-        let drawingImage = canvas.drawing.image(from: canvas.drawing.bounds, scale: 1.0)
-        
-        // Does not work. Needs to be stored using the SwiftData
-        // // UIImageWriteToSavedPhotosAlbum(drawingImage, nil, nil, nil)
+        //let drawingImage = canvas.drawing.image(from: canvas.drawing.bounds, scale: 1.0)
+        let drawingImage = canvas.drawing.dataRepresentation()
+
+        if isFront {
+            //card.drawingFront = drawingImage.pngData()
+            card.drawingFront = drawingImage
+        } else {
+            card.drawingBack = drawingImage
+        }
     }
 }
 

@@ -13,7 +13,7 @@ import SwiftUI
 struct TagsView: View {
     @Environment(\.modelContext) var modelContext
     
-    @State private var path = [Tag]()
+    @State private var path = NavigationPath() // [Tag]()
     @State private var sortOrder = SortDescriptor(\Tag.tagName)
     @State private var searchText = ""
     
@@ -42,6 +42,7 @@ struct TagsView: View {
                 .environment(\.editMode, $editMode)
                 .navigationTitle("Tags")
                 .navigationDestination(for: Tag.self, destination: CardsInTagsView.init) // it just uses the for variable as the parameter for the init func
+                .navigationDestination(for: Card.self, destination: CardEditView.init)
                 .searchable(text: $searchText)
                 .toolbar {
                     //Button("Add Samples", action: addSamples)
@@ -83,7 +84,7 @@ struct TagsView: View {
     func addTag() {
         let tag = Tag()
         modelContext.insert(tag)
-        path = [tag]
+        //path.append(tag)
     }
 }
 
