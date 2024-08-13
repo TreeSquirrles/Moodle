@@ -32,6 +32,11 @@ struct CardsInDeckView: View {
                 }
             }
             .onDelete(perform: removeCardsFromDeck)
+            .toolbar {
+                Button("Study") {
+                    
+                }
+            }
         }
     }
     

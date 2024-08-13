@@ -8,33 +8,14 @@
 import SwiftData
 import SwiftUI
 
-
-
 struct TagsView: View {
     @Environment(\.modelContext) var modelContext
-    
     @State private var path = NavigationPath() // [Tag]()
+    
     @State private var sortOrder = SortDescriptor(\Tag.tagName)
     @State private var searchText = ""
     
     @State private var editMode: EditMode = .inactive
-    
-    enum FilterType {
-        case none, deck, tagged
-    }
-    
-    let filter: FilterType
-    
-    var title: String {
-        switch filter {
-        case .none:
-            "All Cards"
-        case .deck:
-            "Cards in _deckname_"
-        case .tagged:
-            "In a Tag"
-        }
-    }
     
     var body: some View {
         NavigationStack(path: $path) {
@@ -70,16 +51,6 @@ struct TagsView: View {
             .navigationTitle("Tags")
         }
     }
-        
-    func addSamples() {
-        let italy = Tag(tagName: "Italy")
-        let england = Tag(tagName: "England")
-        let france = Tag(tagName: "France")
-        
-        modelContext.insert(italy)
-        modelContext.insert(england)
-        modelContext.insert(france)
-    }
     
     func addTag() {
         let tag = Tag()
@@ -89,5 +60,5 @@ struct TagsView: View {
 }
 
 #Preview {
-    TagsView(filter: .tagged)
+    TagsView()
 }

@@ -21,7 +21,7 @@ struct DeckListView: View {
                         Text(deck.name)
                             .font(.headline)
                         
-                        Text("\(decks.count)")
+                        Text("\(deck.cards.count) cards")
                     }
                 }
             }

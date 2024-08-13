@@ -20,7 +20,7 @@ struct CardListView: View {
                         Text(card.front)
                             .font(.headline)
     
-                        //Text("\(cards.count)")
+                        Text("\(card.dateAdded.formatted())")
                     }
                 }
             }

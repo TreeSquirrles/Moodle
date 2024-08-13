@@ -11,7 +11,7 @@ import SwiftUI
 
 struct CardsView: View {
     @Environment(\.modelContext) var modelContext
-    
+    @Query(sort: [SortDescriptor(\Deck.name, order: .reverse)]) var decks: [Deck]
     
     @State private var path:[Card] = [Card]()
     @State private var sortOrder = SortDescriptor(\Card.dateAdded)
@@ -47,7 +47,6 @@ struct CardsView: View {
                 .searchable(text: $searchText)
                 .toolbar {
                     //Button("Add Samples", action: addSamples)
-                    
                     Button(action: {
                         editMode.toggleEditMode(&editMode)
                     }) {
@@ -76,18 +75,38 @@ struct CardsView: View {
     }
     
     
-    func addSamples() {
-        let rome = Card(front: "Rome")
-        let florence = Card(front: "Florence")
-        let naples = Card(front: "Naples")
-        
-        modelContext.insert(rome)
-        modelContext.insert(florence)
-        modelContext.insert(naples)
-    }
+//    func addSamples() {
+//        let rome = Card(front: "Rome")
+//        let florence = Card(front: "Florence")
+//        let naples = Card(front: "Naples")
+//        
+//        modelContext.insert(rome)
+//        modelContext.insert(florence)
+//        modelContext.insert(naples)
+//    }
     
     func addCard() {
-        let card = Card()
+        // Look if there is a deck with id = 0 and with name "Unassigned". If not, add it.
+        var unassignedDeckExist: Bool = false
+        var ddd: Deck?
+        for d in decks {
+            if d.id == 0 //&& d.name == "Unassigned"
+            {
+                unassignedDeckExist = true
+                ddd = d
+                break
+            }
+        }
+        
+        if !unassignedDeckExist{
+            let deck = Deck(id: 0, name: "Unassigned")
+            modelContext.insert(deck)
+            ddd = deck
+        }
+        
+        
+        
+        let card = Card(deck: ddd)
         modelContext.insert(card)
         path = [card]
     }

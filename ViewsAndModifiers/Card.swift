@@ -86,6 +86,7 @@ class Card: Hashable{
 
     init(id: Int64 = Int64.random(in: Int64.min...Int64.max), front: String = "Front", back: String = "Back", deck: Deck? = nil, drawingFront: Data? = nil, drawingBack: Data? = nil) {
         print(URL.applicationSupportDirectory.path(percentEncoded: false))
+        
         self.id = id
         self.front = front
         self.back = back

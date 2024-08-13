@@ -23,6 +23,8 @@ struct CardEditView: View {
     
     @State private var duplicateTagAlert: Bool = false
     
+    @State private var deckName = "Choose a deck (required)"
+    
     var body: some View {
         Form {
             TextField("Name", text: $card.front)
@@ -38,10 +40,16 @@ struct CardEditView: View {
             //                .pickerStyle(.segmented)
             //            }
             
-            
-            NavigationLink(destination:DeckChooseView(decks: decks, card: card)) {
-                Text("Choose your deck (required)")
+            Picker("\(deckName)", selection: $card.deck) {
+                ForEach(decks, id: \.self) {
+                    Text($0.name)
+                        .tag(Optional($0))
+                        .tag(nil as Deck?)
+                }
             }
+//            NavigationLink(destination:DeckChooseView(decks: decks, card: card)) {
+//                Text("Choose your deck (required)")
+//            }
             
             VStack{
                 Button("\(disableScroll ? "Enable" : "Disable") Scroll") {
@@ -109,10 +117,8 @@ struct CardEditView: View {
         }
         
         withAnimation {
-            
             let tag = t ?? Tag(tagName: newTagName)
             card.tags.append(tag)
-            
         }
         newTagName = ""
         try? modelContext.save()
@@ -131,18 +137,18 @@ struct CardEditView: View {
     }
 }
 
-#Preview {
-    do {
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: Card.self, configurations: config)
-        let example = Card()
-        
-        return CardEditView(card: example)
-            .modelContainer(container)
-    } catch {
-        fatalError("Failed to create model container.")
-    }
-}
+//#Preview {
+//    do {
+//        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+//        let container = try ModelContainer(for: Card.self, configurations: config)
+//        let example = Card(backingData: <#any BackingData<Card>#>)
+//        
+//        return CardEditView(card: example)
+//            .modelContainer(container)
+//    } catch {
+//        fatalError("Failed to create model container.")
+//    }
+//}
 
 
 struct DeckChooseView: View {

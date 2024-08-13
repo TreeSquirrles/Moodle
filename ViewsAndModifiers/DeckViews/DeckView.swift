@@ -15,7 +15,6 @@ struct DeckView: View {
     
     @State private var sortOrder = SortDescriptor(\Deck.name)
     @State private var searchText = ""
-    
     @State private var editMode: EditMode = .inactive
     
     @Query(sort: [SortDescriptor(\Deck.name)]) var decks: [Deck]
@@ -23,11 +22,12 @@ struct DeckView: View {
     var body: some View {
         NavigationStack {
             DeckListView()
+                .environment(\.editMode, $editMode)
+                .navigationTitle("Decks")
                 .navigationDestination(for: Deck.self, destination: { item in
                     CardsInDeckView(deckinput: item)
                 }) // Deal with this later
-                .environment(\.editMode, $editMode)
-                .navigationTitle("Decks")
+                .navigationDestination(for: Card.self, destination: CardEditView.init)
                 .searchable(text: $searchText)
                 .toolbar {
                     //Button("Add Samples", action: addSamples)
@@ -39,15 +39,15 @@ struct DeckView: View {
                     }
                     .tint(editMode == .inactive ? .blue : .red)
                     
-                    Button("Add Card", systemImage: "plus", action: addDeck)
+                    Button("Add Deck", systemImage: "plus", action: addDeck)
                     
                     Menu("Sort", systemImage: "arrow.up.arrow.down") {
                         Picker("Sort", selection: $sortOrder) {
-                            Text("Name")
-                                .tag(SortDescriptor(\Card.front))
+                            Text("Deck")
+                                .tag(SortDescriptor(\Deck.name))
                             
-                            Text("Date")
-                                .tag(SortDescriptor(\Card.dateAdded))
+                            Text("Cards")
+                                .tag(SortDescriptor(\Deck.cards.count))
                         }
                         .pickerStyle(.inline)
                     }
@@ -58,16 +58,6 @@ struct DeckView: View {
     
     init(deck: Deck = Deck(name: "My Deck")) {
         self.deck = deck
-    }
-    
-    func addSamples() {
-        let italy = Deck(name: "Italy")
-        let france = Deck(name: "France")
-        let spain = Deck(name: "Spain")
-        
-        modelContext.insert(italy)
-        modelContext.insert(france)
-        modelContext.insert(spain)
     }
     
     func addDeck() {
