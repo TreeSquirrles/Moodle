@@ -13,29 +13,46 @@ struct CardsInDeckView: View {
     
     @Bindable var deck: Deck
     
+    @State private var isStudying = false
+    
     var body: some View {
-        List {
-            Section("Name") {
-                TextField("Tag Name", text: $deck.name)
-            }
-            
-            ForEach(deck.cards) { card in
-                NavigationLink(value: card) {
-                    VStack(alignment: .leading) {
-                        Text(card.front)
-                            .font(.headline)
-                        
-                        Text(card.dateAdded.formatted())
+        VStack {
+            if isStudying == false {
+                List {
+                    Section("Name") {
+                        TextField("Tag Name", text: $deck.name)
                     }
-                    .navigationTitle(deck.name)
-//                    .navigationDestination(for: Card.self, destination: CardEditView.init)
-                }
-            }
-            .onDelete(perform: removeCardsFromDeck)
-            .toolbar {
-                Button("Study") {
                     
+                    ForEach(deck.cards) { card in
+                        NavigationLink(value: card) {
+                            VStack(alignment: .leading) {
+                                Text(card.front)
+                                    .font(.headline)
+                                
+                                Text(card.dateAdded.formatted())
+                            }
+                            .navigationTitle(deck.name)
+                            //                    .navigationDestination(for: Card.self, destination: CardEditView.init)
+                        }
+                    }
+                    .onDelete(perform: removeCardsFromDeck)
+                    .toolbar {
+                        //NavigationStack {
+                        Button("Study") {
+                            isStudying = true
+                        }
+                        //.navigationDestination(for: Deck.self) { value in
+                        //    StudyView()
+                        //}
+                    }
                 }
+            } else {
+                StudyView()
+                    .toolbar {
+                        Button("Done Studying") {
+                            isStudying = false
+                        }
+                    }
             }
         }
     }
