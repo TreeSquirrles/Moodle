@@ -9,6 +9,8 @@ import SwiftData
 import SwiftUI
 
 struct WhiteCardView: View {
+    @Environment(\.accessibilityDifferentiateWithoutColor) var accessibilityDifferentiateWithoutColor
+    
     @State private var offset = CGSize.zero
     @State private var isShowingBack = false
     
@@ -21,11 +23,15 @@ struct WhiteCardView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
                 .fill(
-                    .white
+                    accessibilityDifferentiateWithoutColor
+                    ? .white
+                    : .white
                         .opacity(1 - Double(abs(offset.width / 50)))
                 )
                 .background(
-                    RoundedRectangle(cornerRadius: 25)
+                    accessibilityDifferentiateWithoutColor
+                    ? nil
+                    : RoundedRectangle(cornerRadius: 25)
                         .fill(offset.width > 0 ? .green : .red)
                 )
                 .shadow(radius: 10)

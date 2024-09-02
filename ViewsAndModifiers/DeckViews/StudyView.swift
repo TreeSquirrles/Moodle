@@ -16,6 +16,9 @@ extension View {
 }
 
 struct StudyView: View {
+    @Environment(\.accessibilityDifferentiateWithoutColor) var accessibilityDifferentiateWithoutColor
+    @Environment(\.accessibilityVoiceOverEnabled) var accessibilityVoiceOverEnabled
+    
     //@State private var cards = Array<CardTest>(repeating: .example, count: 10)
     @State private var isActive = true
     @Bindable var deck: Deck
@@ -38,6 +41,43 @@ struct StudyView: View {
                 .accessibilityHidden(index < numCards - 1)
             }
             
+            if accessibilityDifferentiateWithoutColor || accessibilityVoiceOverEnabled {
+                VStack {
+                    Spacer()
+                    HStack {
+                        Button {
+                            withAnimation {
+                                removeCard(at: numCards - 1)
+                            }
+                        } label: {
+                            Image(systemName: "xmark.circle")
+                                .padding()
+                                .background(.black.opacity(0.7))
+                                .clipShape(.circle)
+                        }
+                        .accessibilityLabel("Wrong")
+                        .accessibilityHint("Mark your answer as being incorrect.")
+                        
+                        Spacer()
+                        
+                        Button {
+                            withAnimation {
+                                removeCard(at: numCards - 1)
+                            }
+                        } label: {
+                            Image(systemName: "checkmark.circle")
+                                .padding()
+                                .background(.black.opacity(0.7))
+                                .clipShape(.circle)
+                        }
+                        .accessibilityLabel("Correct")
+                        .accessibilityLabel("Mark your answer as being correct.")
+                    }
+                    .foregroundStyle(.white)
+                    .font(.largeTitle)
+                    .padding()
+                }
+            }
         }
     }
     
