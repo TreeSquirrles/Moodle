@@ -18,7 +18,7 @@ extension View {
 struct StudyView: View {
     //@State private var cards = Array<CardTest>(repeating: .example, count: 10)
     @State private var isActive = true
-    
+    @Bindable var deck: Deck
     @State private var numCards = 10
     
     var body: some View {
@@ -53,5 +53,5 @@ struct StudyView: View {
 }
 
 #Preview {
-    StudyView()
+    StudyView(deck: Deck(name: "Study deck"))
 }

@@ -35,14 +35,14 @@ struct CardsInDeckView: View {
                         }
                     }
                     .onDelete(perform: removeCardsFromDeck)
-                    .toolbar {
-                        Button("Study") {
-                            isStudying = true
-                        }
+                }
+                .toolbar {
+                    Button("Study") {
+                        isStudying = true
                     }
                 }
             } else {
-                StudyView()
+                StudyView(deck: deck)
                     .toolbar {
                         Button("Done Studying") {
                             isStudying = false
