@@ -19,7 +19,7 @@ struct StudyView: View {
     //@State private var cards = Array<CardTest>(repeating: .example, count: 10)
     @State private var isActive = true
     @Bindable var deck: Deck
-    @State private var numCards = 10
+    @State private var numCards: Int
     
     var body: some View {
         ZStack {
@@ -27,8 +27,8 @@ struct StudyView: View {
                 .ignoresSafeArea()
             
             //WhiteCardView()
-            ForEach(0..<numCards, id: \.self) { index in
-                WhiteCardView() {
+            ForEach(0..<deck.cards.count, id: \.self) { index in
+                WhiteCardView(card: deck.cards[index]) {
                     withAnimation {
                         removeCard(at: index)
                     }
@@ -39,6 +39,11 @@ struct StudyView: View {
             }
             
         }
+    }
+    
+    init(deck: Deck) {
+        self.deck = deck
+        self.numCards = deck.cards.count
     }
     
     func removeCard(at index: Int) {

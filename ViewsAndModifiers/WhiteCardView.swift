@@ -13,7 +13,8 @@ struct WhiteCardView: View {
     @State private var isShowingBack = false
     
     //let card: Card
-    let card = CardTest(front: "Front", back: "Back")
+    @Bindable var card: Card
+    //let card = CardTest(front: "Front", back: "Back")
     var removal: (() -> Void)? = nil
     
     var body: some View {
@@ -64,5 +65,5 @@ struct WhiteCardView: View {
 }
 
 #Preview {
-    WhiteCardView()
+    WhiteCardView(card: Card(front: "Front", back: "Back"))
 }
