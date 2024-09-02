@@ -32,18 +32,13 @@ struct CardsInDeckView: View {
                                 Text(card.dateAdded.formatted())
                             }
                             .navigationTitle(deck.name)
-                            //                    .navigationDestination(for: Card.self, destination: CardEditView.init)
                         }
                     }
                     .onDelete(perform: removeCardsFromDeck)
                     .toolbar {
-                        //NavigationStack {
                         Button("Study") {
                             isStudying = true
                         }
-                        //.navigationDestination(for: Deck.self) { value in
-                        //    StudyView()
-                        //}
                     }
                 }
             } else {
