@@ -78,7 +78,7 @@ struct ContentView: View { // Homepage
                     }
                 SettingsView()
                     .tabItem {
-                        Label("Credits", systemImage: "gearshape.fill")
+                        Label("Credits", systemImage: "list.clipboard")
                     }
 //                CardDrawingView()
 //                    .tabItem {
