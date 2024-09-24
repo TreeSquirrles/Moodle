@@ -13,7 +13,6 @@ struct CardsInTagsView: View {
     
     @Bindable var tag: Tag
     
-    
     var body: some View {
         Form {
             Section("Name") {

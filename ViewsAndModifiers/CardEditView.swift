@@ -177,14 +177,13 @@ struct FreeFormDrawingView: View {
     @State private var pencilType: PKInkingTool.InkType = .pen
     @State private var colorPicker = false
     @Environment(\.undoManager) private var undoManager
+    @Environment(\.undoManager) private var undoManager2
     
     @State private var clearCanvas = false
     
     @Bindable var card: Card
     
     @State private var isFront: Bool
-    
-    
     
     var body: some View {
         DrawingView(canvas: $canvas, isDrawing: $isDrawing, pencilType: $pencilType, color: $color)
@@ -199,13 +198,25 @@ struct FreeFormDrawingView: View {
                     }
                     
                     Button {
-                        undoManager?.undo()
+                        if isFront {
+                            undoManager?.undo()
+                        }
+                        else {
+                            undoManager2?.undo()
+                        }
+                    
                     } label: {
                         Image(systemName: "arrow.uturn.backward")
                     }
                     
                     Button {
-                        undoManager?.redo()
+                        
+                        if isFront {
+                            undoManager?.redo()
+                        }
+                        else {
+                            undoManager2?.redo()
+                        }
                     } label: {
                         Image(systemName: "arrow.uturn.forward")
                     }
@@ -302,10 +313,10 @@ struct FreeFormDrawingView: View {
 }
 
 struct DrawingView: UIViewRepresentable {
-    @Binding var canvas: PKCanvasView
-    @Binding var isDrawing: Bool
-    @Binding var pencilType: PKInkingTool.InkType
-    @Binding var color: Color
+    @Binding  var canvas: PKCanvasView
+    @Binding  var isDrawing: Bool
+    @Binding  var pencilType: PKInkingTool.InkType
+    @Binding  var color: Color
     
     var ink: PKInkingTool {
         PKInkingTool(pencilType, color: UIColor(color))
@@ -332,5 +343,4 @@ struct DrawingView: UIViewRepresentable {
         uiView.tool = isDrawing ? ink : eraser
     }
 }
-
 

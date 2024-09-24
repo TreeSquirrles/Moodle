@@ -102,7 +102,6 @@ class Card: Hashable{
         hasher.combine(id)
     }
 }
-
 extension PersistentIdentifier {
     public func persistentModel<Model>(from context: ModelContext) -> Model? where Model : PersistentModel {
         return context.model(for: self) as? Model
