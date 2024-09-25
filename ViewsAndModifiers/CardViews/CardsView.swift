@@ -8,6 +8,15 @@
 import SwiftData
 import SwiftUI
 
+extension View {
+    @ViewBuilder func phoneOnlyNavigationView() -> some View {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            self.navigationViewStyle(.stack)
+        } else {
+            self
+        }
+    }
+}
 
 struct CardsView: View {
     @Environment(\.modelContext) var modelContext
