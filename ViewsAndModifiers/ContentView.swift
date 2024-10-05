@@ -50,6 +50,8 @@ extension EditMode {
 }
 
 struct ContentView: View { // Homepage
+    @Environment(\.modelContext) var modelContext
+    
     @State private var showCredits = false
     @State private var showingActionSheet = false
     @State private var path = NavigationPath()
@@ -59,7 +61,11 @@ struct ContentView: View { // Homepage
             TabView{
                 HomeView()
                     .tabItem{
-                        Label("Home", systemImage: "house.fill")
+                        Label{
+                            Text("Home")
+                        } icon: {
+                            Image("BARNHOUSE")
+                        }
                     }
                 
                 CardsView()
@@ -86,6 +92,30 @@ struct ContentView: View { // Homepage
 //                    }
             }
         }
+        .onAppear {
+            let descriptor = FetchDescriptor<Card>(predicate: #Predicate { $0.front.count > 0 })
+            let count = (try? modelContext.fetchCount(descriptor)) ?? 0
+            
+            if count == 0 {
+                let rome = Card(front: "ffff")
+                let florence = Card(front: "ssss")
+                let naples = Card(front: "nnnnnn")
+                
+                modelContext.insert(rome)
+                modelContext.insert(florence)
+                modelContext.insert(naples)
+            }
+        }
+    }
+    
+    init() {
+        let rome = Card(front: "test1")
+        let florence = Card(front: "test2")
+        let naples = Card(front: "test3")
+        
+        //modelContext.insert(rome)
+        //modelContext.insert(florence)
+        //modelContext.insert(naples)
     }
 }
 

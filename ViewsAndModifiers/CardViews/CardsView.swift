@@ -38,6 +38,7 @@ struct CardsView: View {
     
     var body: some View {
         NavigationStack(path: $path) {
+            
             CardListView(sort: sortOrder, searchString: searchText)
                 .environment(\.editMode, $editMode)
                 .navigationTitle("All Cards")
@@ -46,7 +47,7 @@ struct CardsView: View {
                 })
                 .searchable(text: $searchText)
                 .toolbar {
-                    //Button("Add Samples", action: addSamples)
+                    Button("Add Samples", action: addSamples)
                     Button(action: {
                         editMode.toggleEditMode(&editMode)
                     }) {
@@ -70,20 +71,39 @@ struct CardsView: View {
         }
     }
     
+    
     init() {
-//        self.filter = filter
-    }
-    
-    
-//    func addSamples() {
-//        let rome = Card(front: "Rome")
-//        let florence = Card(front: "Florence")
-//        let naples = Card(front: "Naples")
+//        let rome = Card(front: "ttt")
+//        let florence = Card(front: "ssss")
+//        let naples = Card(front: "dddddd")
 //        
 //        modelContext.insert(rome)
 //        modelContext.insert(florence)
 //        modelContext.insert(naples)
-//    }
+    }
+    
+    func firstLaunch() {
+        let cities = Deck(name: "Capitals")
+        modelContext.insert(cities)
+        
+        let newYork = Card(front: "New York", back: "Albany", deck: cities)
+        let wyoming = Card(front: "Wyoming", back: "Cheyenne", deck: cities)
+        let louisiana = Card(front: "Louisiana", back: "Baton Rouge", deck: cities)
+        
+        modelContext.insert(newYork)
+        modelContext.insert(wyoming)
+        modelContext.insert(louisiana)
+    }
+    
+    func addSamples() {
+        let rome = Card(front: "ffff")
+        let florence = Card(front: "ssss")
+        let naples = Card(front: "nnnnnn")
+        
+        modelContext.insert(rome)
+        modelContext.insert(florence)
+        modelContext.insert(naples)
+    }
     
     func addCard() {
         // Look if there is a deck with id = 0 and with name "Unassigned". If not, add it.
