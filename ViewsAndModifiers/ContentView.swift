@@ -91,6 +91,36 @@ struct ContentView: View { // Homepage
 //                        Label("Drawing Tool", systemImage: "circle")
 //                    }
             }
+            
+            TabView{
+                HomeView()
+                    .tabItem{
+                        Label("Home", systemImage: "house.fill")
+                    }
+                
+                CardsView()
+                    .tabItem {
+                        Label("All Cards", systemImage: "rectangle.on.rectangle.angled")
+                    }
+                
+                DeckView()
+                    .tabItem {
+                        Label("Decks", systemImage: "rectangle.stack")
+                    }
+                
+                TagsView()
+                    .tabItem {
+                        Label("Tags", systemImage: "tag")
+                    }
+                SettingsView()
+                    .tabItem {
+                        Label("Credits", systemImage: "list.clipboard")
+                    }
+//                CardDrawingView()
+//                    .tabItem {
+//                        Label("Drawing Tool", systemImage: "circle")
+//                    }
+            }
         }
         .onAppear {
             let descriptor = FetchDescriptor<Card>(predicate: #Predicate { $0.front.count >= 0 })

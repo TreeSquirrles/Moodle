@@ -10,49 +10,18 @@ import SwiftUI
 struct SettingsView: View {
     var body: some View {
         NavigationStack{
-            VStack {
-                Exit()
-                
-                Text("CREDITS")
-                    .title()
+            ZStack {
+                ScrollView {
+                    Image("BARNHOUSE")
+                    
+                    VStack {
+                        Text("When we were studying for a test at school, we realized that so many of our beloved flashcard apps did not have a drawing/handwriting tool. This is why we decided to innovate and create Moodle (Memorized Doodle). Moodle is an interactive flashcard app accessible to all ages that uses doodling, typing, and spaced repetition. Our mission is to make flashcard-style studying more time efficient and accessible to all different kinds of needs.")
+                        Text("When we were studying for a test at school, we realized that so many of our beloved flashcard apps did not have a drawing/handwriting tool. This is why we decided to innovate and create Moodle (Memorized Doodle). Moodle is an interactive flashcard app accessible to all ages that uses doodling, typing, and spaced repetition. Our mission is to make flashcard-style studying more time efficient and accessible to all different kinds of needs.")
+                        Text("When we were studying for a test at school, we realized that so many of our beloved flashcard apps did not have a drawing/handwriting tool. This is why we decided to innovate and create Moodle (Memorized Doodle). Moodle is an interactive flashcard app accessible to all ages that uses doodling, typing, and spaced repetition. Our mission is to make flashcard-style studying more time efficient and accessible to all different kinds of needs.")
+                    }
                     .padding()
-                
-                
-                Image("MoodleCircle")
-                    .imageScale(.small)
-                
-                HStack{
-                    VStack{
-                        Text("About us")
-                            .font(.title)
-                            .fontDesign(.rounded)
-                            .fontWeight(.heavy)
-                        Text("This is one paragraph that I wrote by myself. It has nothing to do with what Moodle is about but it is a paragraph so it is okay. This paragraph will be replaced by a real one once we know what to write. This will be repeated on the other side.")
-                            .padding([.top, .bottom], 0.4)
-                        Text("This is the second paragraph we will use. It will help us to write a bunch of stuff with really nice spacing and all that good stuff. It will make everything look really good and that is what we want. Moodle needs to look good, after all.")
-                            .padding([.top, .bottom], 0.4)
-                        Text("Don't worry, we'll have many subtitles for all the other people around. It'll be really cool. :)")
-                            .padding([.top], 0.4)
-                    }
-                    VStack{
-                        Image("Divider")
-                    }
-                    VStack{
-                        Text("Our mission")
-                            .font(.title)
-                            .fontDesign(.rounded)
-                            .fontWeight(.heavy)
-                        Text("\nThis is one paragraph that I wrote by myself. It has nothing to do with what Moodle is about but it is a paragraph so it is okay. This paragraph will be replaced by a real one once we know what to write. This will be repeated on the other side.\n\n")
-                            .padding([.top, .bottom], 0.4)
-                        Text("This is the second paragraph we will use. It will help us to write a bunch of stuff with really nice spacing and all that good stuff. It will make everything look really good and that is what we want. Moodle needs to look good, after all.\n\n")
-                            .padding([.top, .bottom], 0.4)
-                        Text("Don't worry, we'll have many subtitles for all the other people around. It'll be really cool. :)")
-                            .padding([.top], 0.4)
-                    }
+                    .padding()
                 }
-                .padding()
-                
-                Spacer()
             }
         }
     }
