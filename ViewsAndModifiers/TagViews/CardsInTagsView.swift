@@ -13,27 +13,44 @@ struct CardsInTagsView: View {
     
     @Bindable var tag: Tag
     
+    @State private var isStudying = false
     
     var body: some View {
-        Form {
-            Section("Name") {
-                TextField("Tag Name", text: $tag.tagName)
-            }
-            
-            List {
-                ForEach(tag.cards) { card in
-                    NavigationLink(value: card) {
-                        VStack(alignment: .leading) {
-                            Text(card.front)
-                                .font(.headline)
-                            
-                            Text(card.dateAdded.formatted())
+        VStack {
+            if isStudying == false {
+                Form {
+                    Section("Name") {
+                        TextField("Tag Name", text: $tag.tagName)
+                    }
+                    
+                    List {
+                        ForEach(tag.cards) { card in
+                            NavigationLink(value: card) {
+                                VStack(alignment: .leading) {
+                                    Text(card.front)
+                                        .font(.headline)
+                                    
+                                    Text(card.dateAdded.formatted())
+                                }
+                                .navigationTitle(tag.tagName)
+                                //                    .navigationDestination(for: Card.self, destination: CardInTagEditView.init)
+                            }
                         }
-                        .navigationTitle(tag.tagName)
-                        //                    .navigationDestination(for: Card.self, destination: CardInTagEditView.init)
+                        .onDelete(perform: removeCardsFromTag)
                     }
                 }
-                .onDelete(perform: removeCardsFromTag)
+                .toolbar {
+                    Button("Study") {
+                        isStudying = true
+                    }
+                }
+            } else {
+                StudyTagView(tag: tag)
+                    .toolbar {
+                        Button("Done Studying") {
+                            isStudying = false
+                        }
+                    }
             }
         }
         //    CardListView(sort: SortDescriptor(\Card.dateAdded), searchString: "")

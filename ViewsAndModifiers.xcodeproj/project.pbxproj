@@ -16,6 +16,7 @@
 		E73275A52C84242800C63AF4 /* WhiteCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73275A42C84242800C63AF4 /* WhiteCardView.swift */; };
 		E73275A72C8432B800C63AF4 /* CardTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73275A62C8432B800C63AF4 /* CardTest.swift */; };
 		E73275A92C84340100C63AF4 /* StudyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73275A82C84340100C63AF4 /* StudyView.swift */; };
+		E73275AD2CB1FBB100C63AF4 /* StudyTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73275AC2CB1FBB100C63AF4 /* StudyTagView.swift */; };
 		E76C38F82C374032005E9AB8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76C38F72C374032005E9AB8 /* SettingsView.swift */; };
 		E76C38FA2C374165005E9AB8 /* CardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76C38F92C374165005E9AB8 /* CardsView.swift */; };
 		E76C38FC2C3744AA005E9AB8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76C38FB2C3744AA005E9AB8 /* HomeView.swift */; };
@@ -40,6 +41,7 @@
 		E73275A42C84242800C63AF4 /* WhiteCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteCardView.swift; sourceTree = "<group>"; };
 		E73275A62C8432B800C63AF4 /* CardTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTest.swift; sourceTree = "<group>"; };
 		E73275A82C84340100C63AF4 /* StudyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyView.swift; sourceTree = "<group>"; };
+		E73275AC2CB1FBB100C63AF4 /* StudyTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyTagView.swift; sourceTree = "<group>"; };
 		E76C38F72C374032005E9AB8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E76C38F92C374165005E9AB8 /* CardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsView.swift; sourceTree = "<group>"; };
 		E76C38FB2C3744AA005E9AB8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 		E73275812C69D1A900C63AF4 /* TagViews */ = {
 			isa = PBXGroup;
 			children = (
+				E73275AC2CB1FBB100C63AF4 /* StudyTagView.swift */,
 				E7848F0A2C38F3110066D3F5 /* TagsView.swift */,
 				E7848F0E2C3A61F10066D3F5 /* CardsInTagsView.swift */,
 				E7848F0C2C38F3CB0066D3F5 /* TagListView.swift */,
@@ -211,6 +214,7 @@
 			files = (
 				E76C39022C37516B005E9AB8 /* CardEditView.swift in Sources */,
 				E76C38F82C374032005E9AB8 /* SettingsView.swift in Sources */,
+				E73275AD2CB1FBB100C63AF4 /* StudyTagView.swift in Sources */,
 				E76C38FE2C37481A005E9AB8 /* Card.swift in Sources */,
 				473887A02C3E26DD00430A67 /* DeckView.swift in Sources */,
 				E73275A92C84340100C63AF4 /* StudyView.swift in Sources */,
