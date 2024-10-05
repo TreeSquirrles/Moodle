@@ -8,7 +8,6 @@
 import Foundation
 import SwiftData
 
-
 // Don't mind any of this, this was just to try and genericize the CardsView so that we didn't have to make another DecksView file.
 //protocol Moodle {
 //    associatedtype Element

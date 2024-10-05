@@ -8,6 +8,15 @@
 import SwiftData
 import SwiftUI
 
+extension View {
+    @ViewBuilder func phoneOnlyNavigationView() -> some View {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            self.navigationViewStyle(.stack)
+        } else {
+            self
+        }
+    }
+}
 
 struct CardsView: View {
     @Environment(\.modelContext) var modelContext
@@ -47,7 +56,7 @@ struct CardsView: View {
                 })
                 .searchable(text: $searchText)
                 .toolbar {
-                    Button("Add Samples", action: addSamples)
+//                    Button("Add Samples", action: addSamples)
                     Button(action: {
                         editMode.toggleEditMode(&editMode)
                     }) {
@@ -82,18 +91,18 @@ struct CardsView: View {
 //        modelContext.insert(naples)
     }
     
-    func firstLaunch() {
-        let cities = Deck(name: "Capitals")
-        modelContext.insert(cities)
-        
-        let newYork = Card(front: "New York", back: "Albany", deck: cities)
-        let wyoming = Card(front: "Wyoming", back: "Cheyenne", deck: cities)
-        let louisiana = Card(front: "Louisiana", back: "Baton Rouge", deck: cities)
-        
-        modelContext.insert(newYork)
-        modelContext.insert(wyoming)
-        modelContext.insert(louisiana)
-    }
+//    func firstLaunch() {
+//        let cities = Deck(name: "Capitals")
+//        modelContext.insert(cities)
+//        
+//        let newYork = Card(front: "New York", back: "Albany", deck: cities)
+//        let wyoming = Card(front: "Wyoming", back: "Cheyenne", deck: cities)
+//        let louisiana = Card(front: "Louisiana", back: "Baton Rouge", deck: cities)
+//        
+//        modelContext.insert(newYork)
+//        modelContext.insert(wyoming)
+//        modelContext.insert(louisiana)
+//    }
     
     func addSamples() {
         let rome = Card(front: "ffff")
