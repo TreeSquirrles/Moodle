@@ -61,40 +61,6 @@ struct ContentView: View { // Homepage
             TabView{
                 HomeView()
                     .tabItem{
-                        Label{
-                            Text("Home")
-                        } icon: {
-                            Image("BARNHOUSE")
-                        }
-                    }
-                
-                CardsView()
-                    .tabItem {
-                        Label("All Cards", systemImage: "rectangle.on.rectangle.angled")
-                    }
-                
-                DeckView()
-                    .tabItem {
-                        Label("Decks", systemImage: "rectangle.stack")
-                    }
-                
-                TagsView()
-                    .tabItem {
-                        Label("Tags", systemImage: "tag")
-                    }
-                SettingsView()
-                    .tabItem {
-                        Label("Credits", systemImage: "list.clipboard")
-                    }
-//                CardDrawingView()
-//                    .tabItem {
-//                        Label("Drawing Tool", systemImage: "circle")
-//                    }
-            }
-            
-            TabView{
-                HomeView()
-                    .tabItem{
                         Label("Home", systemImage: "house.fill")
                     }
                 
@@ -121,7 +87,40 @@ struct ContentView: View { // Homepage
 //                        Label("Drawing Tool", systemImage: "circle")
 //                    }
             }
+            
+            
+            // TabView number 2
+//            TabView{
+//                HomeView()
+//                    .tabItem{
+//                        Label("Home", systemImage: "house.fill")
+//                    }
+//                
+//                CardsView()
+//                    .tabItem {
+//                        Label("All Cards", systemImage: "rectangle.on.rectangle.angled")
+//                    }
+//                
+//                DeckView()
+//                    .tabItem {
+//                        Label("Decks", systemImage: "rectangle.stack")
+//                    }
+//                
+//                TagsView()
+//                    .tabItem {
+//                        Label("Tags", systemImage: "tag")
+//                    }
+//                SettingsView()
+//                    .tabItem {
+//                        Label("Credits", systemImage: "list.clipboard")
+//                    }
+////                CardDrawingView()
+////                    .tabItem {
+////                        Label("Drawing Tool", systemImage: "circle")
+////                    }
+//            }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .onAppear {
             let descriptor = FetchDescriptor<Card>(predicate: #Predicate { $0.front.count >= 0 })
             let count = (try? modelContext.fetchCount(descriptor)) ?? 0
