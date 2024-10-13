@@ -52,15 +52,21 @@ struct CardEditView: View {
 //            }
             
             VStack{
-                Button("\(disableScroll ? "Enable" : "Disable") Scroll") {
-                    disableScroll.toggle()
+                HStack{
+                    Button("\(disableScroll ? "Enable" : "Disable") Scroll") {
+                        disableScroll.toggle()
+                    }
                 }
+                //.fixedSize(horizontal: false, vertical: true)
+                //.frame(maxHeight: 200)
                 HStack{
                     FreeFormDrawingView(card: card, isFront: true)
                     //.gesture(DragGesture(minimumDistance: 0))
                     Image("Divider")
                     FreeFormDrawingView(card: card, isFront: false)
                 }//.scrollDisabled(true)
+                //.fixedSize(horizontal: false, vertical: true)
+                .frame(maxHeight: 140)
             }
             
             Section("Tags") {
